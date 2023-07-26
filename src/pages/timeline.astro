@@ -1,0 +1,157 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../styles/base.css';
+import valentines from '../images/valentine1.jpg';
+import shooting1 from '../images/shooting1.jpg';
+import shooting2 from '../images/shooting2.jpg';
+import boatday1 from '../images/boatday1.jpg';
+import poolday from '../images/poolday.jpg';
+import wedding2022 from '../images/wedding2022.jpg';
+import tennessee1 from '../images/tennessee1.jpg';
+import tennessee2 from '../images/tennessee2.jpg';
+import tennessee3 from '../images/tennessee3.jpg';
+import tennessee4 from '../images/tennessee4.jpg';
+---
+
+<Layout title="Trevor & Kristen">
+<!--
+  TODO: I can break up each section and style individually. Maybe break up by year as well. 
+  Could also add a timeline graphic.
+-->
+<body>
+    <header class="">
+        <div class="flex justify-between p-4">
+            <a class="" href='./index.html'><button class="text-white bg-black rounded-md p-2 w-50">Home</button></a>
+            <button class="text-white bg-black rounded-md p-2 w-20">RSVP</button>
+        </div>
+    </header>
+    <h2 id="relationship_tour" class="text-9xl mt-8 text-center font-vibes">Our relationship tour...</h2>
+    <div class="mt-8 w-11/12 m-auto">
+        <div class="text-center">
+            <h3 class="mb-8">How we first met!</h3>
+            <p class="">It was Christmas time and we both found ourselves at Bloomingdale's trying to puchase the same
+                pair
+                of black
+                cashmere gloves. We
+                basically fell in love instantly, but Kristen decided to leave our entire potential relationship up to
+                fate.
+                She
+                wrote her name and number in a book and I wrote mine on a 5 dollar bill. Would fate prove we were meant
+                to
+                be
+                together?...OK, OK
+                this is the plot of Serendipity. We met on Hinge, best dating app ever baby!!!
+            </p>
+        </div>
+        <div class="flex justify-around mt-10">
+            <img class="w-1/4" src={valentines} alt="Fuzzy selfie on snow covered beach.">
+            <div class="flex flex-col justify-center w-1/2">
+                <h3 class="mb-8">First Valentines</h3>
+                <p>Valentines 2020 was only a couple weeks after we were "officially" boyfriend and girlfriend. We took
+                    a
+                    little drive
+                    to Rosy Mound Natural Area in Grand Haven and took a cold but pretty walk to the beach. This was
+                    followed up with a visit
+                    to The Toasted Pickle (definitely recommend if visiting Grand Haven).
+                </p>
+            </div>
+        </div>
+        <div class="flex justify-around mt-10">
+            <div class="flex flex-col justify-center w-1/2">
+                <h3 class="mb-8">Last night out before Covid</h3>
+                <p>Honestly, the fact that Kristen and I found each out just a few months before Covid hit was so
+                    fortunate,
+                    but it also had
+                    its own challenges. One example is the fact that we really couldn't do any more "out on the town"
+                    dates
+                    like going out to eat,
+                    atending shows or going dancing. The first few months of a relationship is usually filled with these
+                    experiences so we kind of
+                    missed out on the "dating" feel. This picture is from St. Patties day, which was literally the
+                    weekend
+                    before everything shut down.
+                </p>
+            </div>
+            <img class="w-1/4" src="./images/stpatty2.jpg" alt="Selfie of boy and girl.">
+        </div>
+        <div class="flex justify-around mt-10">
+            <div class="flex flex-row justify-around w-1/2">
+                <img class="w-5/12 h-auto" src={shooting1} alt="Girl shooting a shotgun.">
+                <img class="w-5/12 h-auto" src={shooting2} alt="Girl shooting a shotgun.">
+            </div>
+            <div class="flex flex-col justify-center w-1/3">
+                <h3 class="mb-8">She aint in the city anymore!</h3>
+                <p>Kristen's first time visiting my home and of course it ends up with her shooting a gun for the first
+                    time.</p>
+            </div>
+        </div>
+        <div class="flex justify-around mt-10">
+            <div class="flex flex-col justify-center w-1/3">
+                <h3 class="mb-8">Boat Days!!</h3>
+                <p>One of our favorite summer time activies is going out on the boat. Being out on Lake Michigan on a
+                    beautiful summer
+                    day is just unbeatable. I remember the first time we took the boat out because I was so excited to
+                    share
+                    one of my favorite things with Kristen.
+                    We got to the boat launch and it was time to show off a little by executing a very impressive, near
+                    perfect, backup of the trailer into the water.
+                    The boat was in the water and all of our stuff was in the boat; we were ready to go! I turn the key
+                    and
+                    nothing happened. Turned
+                    out to be some faulty wiring and we ended up spending that day back at my parents jumping in and out
+                    of
+                    our dog's kitty pool.
+                </p>
+            </div>
+            <div class="flex flex-row w-1/2 justify-around">
+                <img class="w-6/12 h-auto" src={boatday1} alt="Picture on boat on Lake Michigan">
+                <img class="w-6/12 h-auto" src={poolday} alt="Laying in small kitty pool with drink.">
+            </div>
+        </div>
+        <div class="flex justify-evenly mt-10">
+            <img class="w-1/4" src={wedding2022} alt="Selfie of boy and girl.">
+            <div class="flex flex-col justify-center w-1/2">
+                <h3 class="mb-8">First wedding together</h3>
+                <p>I believe this was one of the first weddings that Kristen and I attended together. It is SO much
+                    better
+                    having a date
+                    to a wedding.
+                    Andrew and Cait had a beatuiful wedding with a fun outdoor reception. It was a nice relief from the
+                    doom
+                    and gloom of Covid.
+                </p>
+            </div>
+        </div>
+        <div class="flex justify-evenly mt-10">
+            <div class="flex flex-col justify-center">
+                <h3 class="mb-8">ROAD TRIP!!</h3>
+                <p>Kristen's sister and brother in law live down in Murfreesboro Tennesse, which gave us the perfect
+                    excuse
+                    for our first
+                    road trip. We visited Kelsey and Andrew, hung out in Nashville and ended the trip with a few days in
+                    the
+                    Great Smoky Mountains National Park.
+                    That meant our first time camping and hiking together where we discovered that we are complete
+                    opposites
+                    when it comes to hiking. She
+                    likes the long gentle incline hikes where as I like the steep hard hikes. We did both and saw some
+                    amazing views.
+                </p>
+            </div>
+            <div class="flex flex-col">
+                <div class="flex flex-row justify-center">
+                    <img class="w-1/4 h-auto" src={tennessee1} alt="Selfie of boy and girl.">
+                    <img class="w-1/4 h-auto" src={tennessee2} alt="Selfie of boy and girl.">
+                </div>
+                <div class="flex flex-row justify-center">
+                    <img class="w-1/4 h-auto" src={tennessee3} alt="Selfie of boy and girl.">
+                    <img class="w-1/4 h-auto" src={tennessee4} alt="Selfie of boy and girl.">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</Layout>
+
+<style>
+</style>

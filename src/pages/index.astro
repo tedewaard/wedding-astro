@@ -1,0 +1,31 @@
+---
+import Layout from '../layouts/Layout.astro';
+import engaged from '../images/engagement.jpg';
+import '../styles/base.css';
+---
+
+<Layout title="Trevor & Kristen">
+  <header class="">
+    <div class="flex justify-between p-4">
+      <a class="" href='./timeline.html'><button class="text-white bg-black rounded-md p-2 w-50">Relationship Tour</button></a>
+      <button class="text-white bg-black rounded-md p-2 w-20">RSVP</button>
+    </div>
+    <div class="text-9xl font-bold text-center">
+      <h1 class="font-vibes slideInLeft">Trevor</h1>
+      <h1 class="font-normal">&</h1>
+      <img src="" alt="">
+      <h1 class="font-vibes mt-8 slideInRight">Kristen</h1>
+      <h1 class="font-vibes mt-10">October 19, 2024</h1>
+    </div>
+  </header>
+  <main>
+    <h1 class="p-5 text-9xl font-bold mt-20 text-white bg-black text-center">#LetsGetEdeweird</h1>
+    <img class="m-auto w-2/3 mt-4 border-double border-8 border-black" src={engaged} alt="Canded photo in front of sunset on rocks next to beach.">
+  </main>
+  <footer>
+    <p class="text-right pr-5">Copyright &copy; trevorandkristen.com</p>
+  </footer>
+</Layout>
+
+<style>
+</style>
