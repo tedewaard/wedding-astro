@@ -1,12 +1,42 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import '../styles/base.css';
+import Card from '../components/Card.astro'
 ---
 
 
 <Layout title="Trevor & Kristen">
 
 <body class="">
-    <div class="z-1 fixed w-3 bg-red-700 h-screen top-0 left-1/2 overflow-visible">
+    <div class="flex py-4 mx-auto ">
+        <h2 class="font-bold text-3xl mx-auto">December, 2019</h2>
     </div>
+    <div class="flex justify-around">
+        <div class="flex-row">
+            <Card title='How we first met!' body="It was Christmas time and we both found ourselves at Bloomingdale\'s trying to puchase the same \
+                    pair of black cashmere gloves. We basically fell in love instantly, but Kristen decided to leave our entire potential relationship up to fate. \
+                    She wrote her name and number in a book and I wrote mine on a 5 dollar bill. Would fate prove we were meant to \
+                    be together?...OK, OK this is the plot of Serendipity. We met on Hinge, best dating app ever baby!!!" />
+
+            <Card title='First Valentines' body="Valentines 2020 was only a couple weeks after we were 'officially' boyfriend and girlfriend. We took \
+                        a little drive to Rosy Mound Natural Area in Grand Haven and took a cold but pretty walk to the beach. This was \
+                        followed up with a visit to The Toasted Pickle (definitely recommend if visiting Grand Haven)." />
+
+
+        </div>
+        <div class=" bg-red-700 w-full text-center">
+            Test
+        </div>
+        <div class="flex-row justify-items-center mx-auto">
+            <Card title='Last night out before Covid' body="Honestly, the fact that Kristen and I found each out just a few months before Covid hit was so \
+                        fortunate, but it also had its own challenges. One example is the fact that we really couldn't do any more 'out on the town' \
+                        dates like going out to eat, atending shows or going dancing. The first few months of a relationship is usually filled with these \
+                        experiences so we kind of missed out on the 'dating' feel. This picture is from St. Patties day, which was literally the \
+                        weekend before everything shut down." />
+            <Card title='She aint in the city anymore!' body="Kristen's first time visiting my home and of course it ends up with her shooting a gun for the first time." />
+
+        </div>
+    </div>
+
+
 </body>
