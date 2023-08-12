@@ -1,6 +1,6 @@
 ---
 
-const { class: className } = Astro.props;
+const {} = Astro.props;
 
 if (Astro.request.method === "POST") {
     try {
@@ -18,20 +18,35 @@ if (Astro.request.method === "POST") {
 
 ---
 
-<div class={className}>
-<div class="border-black rounded-3xl border-4 w-3/12 mx-auto ">
+<script>
+	let rsvp_button = document.getElementById('rsvp');
+    let vis = document.getElementById('vis');
+    let body = document.getElementById('body');
+	rsvp_button.onclick = function() {
+        if (vis.className == 'hidden'){
+            vis.setAttribute('class', 'fixed w-full h-full z-10');
+            body.setAttribute('class', 'bg-black opacity-40 z-0')
+        } else {
+            vis.setAttribute('class', 'hidden');
+            body.setAttribute('class', '')
+        }
+	}
+</script>
+
+<div id="vis" class="hidden">
+<div class="border-black rounded-3xl border-4 w-3/12 mx-auto bg-white opacity-100">
 	<h2 class="text-center underline text-2xl font-bold">RSVP</h2>
 	<p class="text-center font-bold">October 19, 2024</p>	
 	<p class="text-center text-sm font-bold">4PM - 11PM</p>	
     <form method="POST" class="">
         <div class="flex mx-auto w-4/5 my-4">
             <div class="mr-4 whitespace-nowrap">
-                <label for="name">Name:</label><br>
-                <label for="song">Song Request:</label>
+                <label class="font-bold" for="name">Name:</label><br>
+                <label class="font-bold" for="song">Song Request:</label>
             </div>
             <div class="min-w-0">
-                <input class="max-w-full border rounded-lg border-black" type="text" id="name" name="name" required><br>
-                <input class="max-w-full border rounded-lg border-black" type="text" id="song" name="song"><br>
+                <input class="h-6 max-w-full border rounded-lg border-black mb-1" type="text" id="name" name="name" required><br>
+                <input class="h-6 max-w-full border rounded-lg border-black" type="text" id="song" name="song"><br>
             </div>
         </div>
         <div class="flex">

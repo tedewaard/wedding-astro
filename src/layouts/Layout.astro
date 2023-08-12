@@ -7,15 +7,6 @@ export interface Props {
 const { title } = Astro.props;
 ---
 
-<script>
-	let rsvp_button = document.getElementById('rsvp');
-	let rsvp_modal = document.getElementById('rsvp_modal');
-	console.log(rsvp_modal);
-	rsvp_button.onclick = function() {
-		//rsvp_modal.classList.replace("hidden", "block");
-	}
-
-</script>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +18,7 @@ const { title } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
-	<body>
+	<body id="body">
 		<header class="z-0">
 			<div class="flex justify-between p-4">
 				<a class="" href='./index.html'><button class="text-white bg-black rounded-md p-2 w-50">Home</button></a>
@@ -37,7 +28,7 @@ const { title } = Astro.props;
 				</div>
 			</div>
 		</header>
-		<RSVP id="rsvp_modal" class="hidden" />
+		<RSVP />
 		<slot />
 	</body>
 </html>
