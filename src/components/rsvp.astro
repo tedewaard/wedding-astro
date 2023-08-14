@@ -2,6 +2,8 @@
 
 const {} = Astro.props;
 
+import closeIcon from '../images/close_icon.png';
+
 if (Astro.request.method === "POST") {
     try {
         const data = await Astro.request.formData();
@@ -21,20 +23,28 @@ if (Astro.request.method === "POST") {
 <script>
 	let rsvp_button = document.getElementById('rsvp');
     let vis = document.getElementById('vis');
-    let body = document.getElementById('body');
+    let close = document.getElementById('close');
 	rsvp_button.onclick = function() {
         if (vis.className == 'hidden'){
-            vis.setAttribute('class', 'fixed w-full h-full z-10');
-            body.setAttribute('class', 'bg-black opacity-40 z-0')
+            vis.setAttribute('class', 'fixed top-0 left-0 w-full h-full z-10 bg-black/40 ');
         } else {
             vis.setAttribute('class', 'hidden');
-            body.setAttribute('class', '')
         }
-	}
+	};
+
+    close.addEventListener('click', function (event) {
+        if (vis.className == 'hidden'){
+            vis.setAttribute('class', 'fixed top-0 left-0 w-full h-full z-10 bg-black/40 ');
+        } else {
+            vis.setAttribute('class', 'hidden');
+        }
+    });
+
 </script>
 
 <div id="vis" class="hidden">
-<div class="border-black rounded-3xl border-4 w-3/12 mx-auto bg-white opacity-100">
+<div class="relative border-black rounded-3xl border-4 w-3/12 mx-auto bg-white z-20 mt-40">
+    <div id="close" class="absolute top-2 right-2"><img src={closeIcon} width="20" height="20"></div>
 	<h2 class="text-center underline text-2xl font-bold">RSVP</h2>
 	<p class="text-center font-bold">October 19, 2024</p>	
 	<p class="text-center text-sm font-bold">4PM - 11PM</p>	
