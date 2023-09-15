@@ -109,6 +109,31 @@ async function readWedding(auth) {
   });
 }
 
+async function readAllWedding(auth) {
+  const entries = [];
+  const sheets = google.sheets({version: 'v4', auth});
+  const res = await sheets.spreadsheets.values.get({
+    spreadsheetId: '1VoJRjviLA7ZTrTZyHPXoWZ7xuLmFId7faBpYl6GE7O4',
+    range: 'Sheet1',
+  });
+  const rows = res.data.values;
+  if (!rows || rows.length === 0) {
+    console.log('No data found.');
+    return;
+  }
+  //console.log(rows.length)
+  rows.forEach((row) => {
+    // Print columns A and E, which correspond to indices 0 and 4.
+    //console.log(`${row[0]}, ${row[1]}, ${row[2]}, ${row[3]}, ${row[4]}`);
+    //let arr = [${row[0]}, ${row[1]}, ${row[2]}, ${row[3]}, ${row[4]}]
+    //console.log(row);
+    entries.push({Name: row[0], Family_ID: row[1], RSVP_Sent: row[2], RSVP_Status: row[3], Updated: row[4],
+    Song: row[5], Food_Pref: row[6]});
+  });
+  console.log(entries);
+}
+
+
 async function writeWedding(auth) {
   const sheets = google.sheets({version: 'v4', auth});
   let values = [['Tanner', 'Yes', 'Yup']];
@@ -125,4 +150,4 @@ async function writeWedding(auth) {
 
 
 //authorize().then(listMajors).catch(console.error);
-authorize().then(writeWedding).catch(console.error);
+authorize().then(readAllWedding).catch(console.error);
