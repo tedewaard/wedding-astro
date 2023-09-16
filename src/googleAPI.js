@@ -165,7 +165,8 @@ async function testUpdateRow(auth) {
   //console.log(res);
 }
 
-function findPerson(name, data) {
+async function findPerson(name) {
+  data = await authorize().then(readAllWedding).catch(console.error);
   for (let i=0; i<data.length; i++) {
    if (data[i].Name == name) {
     //console.log(data[i]);
@@ -176,8 +177,6 @@ function findPerson(name, data) {
   };
 }
 
-//TODO - This will also print the original person
-//Should return an array of family, not print
 function findFamily(id) {
   let family = [];
   for (let i=0; i<data.length; i++) {
@@ -193,3 +192,5 @@ function findFamily(id) {
 var data = await authorize().then(readAllWedding).catch(console.error);
 
 findPerson('Tanner Edewaard', data)
+
+export{findPerson};

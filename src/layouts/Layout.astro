@@ -1,5 +1,6 @@
 ---
 import RSVP from '../components/rsvp.astro';
+import RSVPReact from '../components/rsvpReact.jsx';
 export interface Props {
 	title: string;
 }
@@ -28,7 +29,8 @@ const { title } = Astro.props;
 				</div>
 			</div>
 		</header>
-		<RSVP />
+		<!--<RSVP />-->
+		<RSVPReact client:only />
 		<slot />
 	</body>
 </html>
