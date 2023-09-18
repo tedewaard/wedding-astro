@@ -1,5 +1,5 @@
 ---
-import RSVP from '../components/rsvp.astro';
+//import RSVP from '../components/rsvp.astro';
 import RSVPReact from '../components/rsvpReact.jsx';
 export interface Props {
 	title: string;
@@ -25,12 +25,10 @@ const { title } = Astro.props;
 				<a class="" href='./index.html'><button class="text-white bg-black rounded-md p-2 w-50">Home</button></a>
 				<div>
 					<a class="" href='./timeline.html'><button class="text-white bg-black rounded-md p-2 w-30">Relationship Timeline</button></a>
-					<button id="rsvp" class="text-white bg-black rounded-md p-2 w-20">RSVP</button>
+					<RSVPReact client:load/>
 				</div>
 			</div>
 		</header>
-		<!--<RSVP />-->
-		<RSVPReact client:only />
 		<slot />
 	</body>
 </html>

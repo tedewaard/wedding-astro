@@ -8,5 +8,5 @@ export default defineConfig({
   output: 'server',
   integrations: [tailwind({
     applyBaseStyles: false
-  }), react()]
+  }), react(),]
 });
