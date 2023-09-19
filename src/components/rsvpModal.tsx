@@ -1,13 +1,17 @@
 import { type FormEvent, useState } from "react";
 import closeIcon from '../images/close_icon.jpg'
+import Rsvp from './rsvp.jsx';
 
 export default function rsvpComponent() {
     const [modal, setModal] = useState(false);
+    const [nameSubmitted, setNameSubmitted] = useState(false);
     const [responseMessage, setResponseMessage] = useState("");
     const [guests, setGuests] = useState([]);
     console.log(guests);
 
+
     async function submit(e: FormEvent<HTMLFormElement>) {
+        console.log(e);
         e.preventDefault();
         const formData = new FormData(e.target as HTMLFormElement);
         const response = await fetch("/api/guest", {
@@ -19,6 +23,7 @@ export default function rsvpComponent() {
         if (data.message) {
             setResponseMessage(data.message);
             setGuests(data.data);
+            setNameSubmitted(true);
         }
 
     }
@@ -44,28 +49,21 @@ export default function rsvpComponent() {
                 <h2 className="text-center underline text-2xl font-bold">RSVP</h2>
                 <p className="text-center font-bold">October 19, 2024</p>
                 <p className="text-center text-sm font-bold">4PM - 11PM</p>
-                <form onSubmit={submit}>
+
+                <form className={nameSubmitted ? "hidden" : ""} onSubmit={submit}>
                     <div className="flex mx-auto w-4/5 my-4">
                         <div className="mr-4 whitespace-nowrap">
                             <label className="font-bold" htmlFor="name">Name:</label><br />
-                            <label className="font-bold" htmlFor="song">Song Request:</label>
                         </div>
                         <div className="min-w-0">
                             <input className="h-6 max-w-full border rounded-lg border-black mb-1" type="text" id="name" name="name" required /><br />
-                            <input className="h-6 max-w-full border rounded-lg border-black" type="text" id="song" name="song" /><br />
                         </div>
                     </div>
                     <div className="flex">
                         <button id="submit" className="mb-4 mx-auto w-1/3 text-center border-black border rounded-lg" type="submit" value="Submit">Submit</button>
                     </div>
-                    <div>
-                        {guests.map((data, idx) => {
-                            return (
-                                <p key={idx}>Guest: {data.Name}</p>
-                            )
-                        })}
-                    </div>
                 </form>
+                <Rsvp guests={guests} />
             </div>
         </div>
 </>

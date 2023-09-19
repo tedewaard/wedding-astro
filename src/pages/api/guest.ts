@@ -6,7 +6,7 @@ export const POST: APIRoute = async ({ request }) => {
     const name = data.get("name");
     const song = data.get("song");
      // Validate the data - you'll probably want to do more than this
-  if (!name || !song) {
+  if (!name) {
     return new Response(
       JSON.stringify({
         message: "Missing required fields",
