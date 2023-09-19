@@ -15,11 +15,11 @@ export const POST: APIRoute = async ({ request }) => {
     );
   }
   // Do something with the data, then return a success response
-  let guest = findPerson(name);
+  let guests = await findPerson(name);
   return new Response(
     JSON.stringify({
       message: "Success!",
-      name: guest[0].Name,
+      data: guests,
     }),
     { status: 200 }
   );
