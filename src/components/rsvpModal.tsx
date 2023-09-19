@@ -14,6 +14,7 @@ export default function rsvpComponent() {
         console.log(e);
         e.preventDefault();
         const formData = new FormData(e.target as HTMLFormElement);
+        console.log(formData);
         const response = await fetch("/api/guest", {
             method: "POST",
             body: formData,
@@ -53,17 +54,17 @@ export default function rsvpComponent() {
                 <form className={nameSubmitted ? "hidden" : ""} onSubmit={submit}>
                     <div className="flex mx-auto w-4/5 my-4">
                         <div className="mr-4 whitespace-nowrap">
-                            <label className="font-bold" htmlFor="name">Name:</label><br />
+                            <label className="font-bold text-lg" htmlFor="name">Name:</label><br />
                         </div>
                         <div className="min-w-0">
-                            <input className="h-6 max-w-full border rounded-lg border-black mb-1" type="text" id="name" name="name" required /><br />
+                            <input className="h-6 max-w-full border rounded-lg border-black mb-1 p-2 text-lg" type="text" id="name" name="name" required /><br />
                         </div>
                     </div>
                     <div className="flex">
                         <button id="submit" className="mb-4 mx-auto w-1/3 text-center border-black border rounded-lg" type="submit" value="Submit">Submit</button>
                     </div>
                 </form>
-                <Rsvp guests={guests} />
+                {nameSubmitted && <Rsvp guests={guests} />}
             </div>
         </div>
 </>
