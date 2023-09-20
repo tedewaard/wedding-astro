@@ -6,7 +6,7 @@ export const POST: APIRoute = async ({ request }) => {
     const guests = [];
     const rsvps = data.entries();
     for (let rsvp of rsvps) {
-        //console.log(rsvp);
+        console.log(rsvp);
         guests.push(rsvp);
     }
     //const song = data.get("song");
