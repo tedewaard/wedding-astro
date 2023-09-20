@@ -6,6 +6,7 @@ import { type FormEvent, useState, useEffect } from "react";
 export default function Rsvp({guests}) {
     const [formSubmitted, setFormSubmitted] = useState(false);
     const [rsvpIncomplete, setRsvpIncomplete] = useState([]);
+    const [rsvpComplete, setRsvpComplete] = useState([]);
 
     async function submit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
@@ -23,14 +24,17 @@ export default function Rsvp({guests}) {
 
     useEffect(() => {
         let incomplete = [];
-        console.log(guests);
+        let complete = [];
         for (let i=0; i<guests.length; i++){
-            if (guests.RSVP_Status === 'Yes'){
-                console.log(guests[i].Name)
-                incomplete.push(guests[i])
+            if (guests[i].RSVP_Status == ""){
+                console.log(guests[i].Name);
+                incomplete.push(guests[i]);
+            } else {
+                complete.push(guests[i]);
             }
         }
         setRsvpIncomplete(incomplete);
+        setRsvpComplete(complete);
     }, []);
 
     //TODO: If the guest has already RSVPd then let them know
@@ -41,11 +45,12 @@ export default function Rsvp({guests}) {
                 <div className="mx-4 mb-5 text-lg font-bold">Thank you for your response!</div>
             :
             <div>
+                {rsvpComplete.map((guest, guestIdx) => {return(<div key={guestIdx} className="mb-4">{guest.Name} is already RSVP'd</div>)})}
             <form id="rsvpForm" className={formSubmitted ? "hidden" : "flex"} onSubmit={submit}>
                 <div className="mx-2">
                     <div className="h-10"></div>
                     <div className="h-10">
-                        <label className="text-sm whitespace-nowrap block">Will you attend?</label>
+                        <label className="text-sm whitespace-nowrap block">Attending?</label>
                     </div>
                     <div className="h-10">
                         <label className="text-sm whitespace-nowrap block">Dietary Restrictions?</label>
