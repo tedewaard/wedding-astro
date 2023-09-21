@@ -40,12 +40,14 @@ export default function Rsvp({guests}) {
     //TODO: If the guest has already RSVPd then let them know
 
     return(
-        <div className="mt-5">
+        <div className="mt-5 text-wed_black">
             {formSubmitted ? 
                 <div className="mx-4 mb-5 text-lg font-bold">Thank you for your response!</div>
             :
-            <div>
-                {rsvpComplete.map((guest, guestIdx) => {return(<div key={guestIdx} className="mb-4">{guest.Name} is already RSVP'd</div>)})}
+            <div className="font-bold">
+                {rsvpComplete.map((guest, guestIdx) => {return(<div key={guestIdx} className="mb-4 mx-2 text-center">{guest.Name} has already RSVP'd</div>)})}
+                <div className="mb-2 w-3/4 text-center mx-auto">Would you like to RSVP for others in your party?</div>
+                <hr className="border-solid w-2/3 mx-auto border-1 mb-1 border-slate-700"></hr>
             <form id="rsvpForm" className={formSubmitted ? "hidden" : "flex"} onSubmit={submit}>
                 <div className="mx-2">
                     <div className="h-10"></div>
@@ -60,16 +62,16 @@ export default function Rsvp({guests}) {
                     return (
                         <div key={idx} className="mr-4 ">
                             <div className="h-10">
-                                <label htmlFor="rsvpSelect" className="whitespace-nowrap">{data.Name}</label>
+                                <label htmlFor="rsvpSelect" className="whitespace-nowrap underline">{data.Name}</label>
                             </div>
                             <div className="h-10">
-                                <select name={data.Name} id="rsvpSelect" className="block w-full">
+                                <select name={data.Name} id="rsvpSelect" className="block w-full ring-1 rounded-md bg-wed_white">
                                     <option value="yes">Yes</option>
                                     <option value="no">No</option>
                                 </select>
                             </div>
                             <div className="h-10">
-                                <select name={data.Name} id="rsvpSelect" className="block w-full">
+                                <select name={data.Name} id="rsvpSelect" className="block w-full ring-1 rounded-md bg-wed_white">
                                     <option value="none">None</option>
                                     <option value="vegetarian">Vegetarian</option>
                                     <option value="vegan">Vegan</option>
