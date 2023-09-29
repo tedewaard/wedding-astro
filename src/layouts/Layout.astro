@@ -20,9 +20,9 @@ const { title } = Astro.props;
 		<title>{title}</title>
 	</head>
 	<body id="body" class="bg-wed_blue">
-		<header class="z-40 relative">
+		<header class="md:inline hidden z-40 absolute w-full">
 			<div class="flex justify-between m-4">
-				<a class="" href='./index.html'><button class="text-white bg-wed_black rounded-md p-2 w-50">Home</button></a>
+				<a class="hidden md:inline" href='./index.html'><button class="text-white bg-wed_black rounded-md p-2 w-50">Home</button></a>
 				<div class="">
 					<a class="mr-4" href='./timeline.html'><button class="text-white bg-wed_black rounded-md p-2 w-30">Relationship Timeline</button></a>
 					<RSVPModal client:load/>

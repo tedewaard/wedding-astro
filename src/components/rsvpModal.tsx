@@ -42,7 +42,7 @@ export default function rsvpComponent() {
     return (
         <>
         <button id="rsvp" onClick={handleClick} className="text-white bg-wed_black rounded-md p-2 w-20">RSVP</button>
-        <div id="vis" className={modal ? "flex justify-center fixed top-0 left-0 w-full h-full z-10 bg-black/40 " : "hidden" }>
+        <div id="vis" className={modal ? "flex justify-center fixed top-0 left-0 w-full h-full z-40 bg-black/40 " : "hidden" }>
             <div className="relative border-black rounded-3xl border-4 bg-wed_blue z-20  mt-40 h-fit">
                 <div id="close" onClick={handleClick} className="absolute top-2 right-2">
                     <img src={closeIcon.src} alt="X icon to close" width="20" height="20" />
