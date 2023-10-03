@@ -2,7 +2,7 @@ import { type FormEvent, useState } from "react";
 import closeIcon from '../images/close_icon.jpg'
 import Rsvp from './rsvp.jsx';
 
-export default function rsvpComponent() {
+export default function rsvpComponent({className}) {
     const [modal, setModal] = useState(false);
     const [nameSubmitted, setNameSubmitted] = useState(false);
     const [responseMessage, setResponseMessage] = useState("");
@@ -41,7 +41,7 @@ export default function rsvpComponent() {
 
     return (
         <>
-        <button id="rsvp" onClick={handleClick} className="text-white bg-wed_black rounded-md p-2 w-20">RSVP</button>
+        <button id="rsvp" onClick={handleClick} className={className}>RSVP</button>
         <div id="vis" className={modal ? "flex justify-center fixed top-0 left-0 w-full h-full z-40 bg-black/40 " : "hidden" }>
             <div className="relative border-black rounded-3xl border-4 bg-wed_blue z-20  mt-40 h-fit">
                 <div id="close" onClick={handleClick} className="absolute top-2 right-2">

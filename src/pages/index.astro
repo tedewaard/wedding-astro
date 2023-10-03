@@ -3,7 +3,8 @@ import Layout from '../layouts/Layout.astro';
 import engaged1 from '../images/engagement1.jpg';
 import engaged2 from '../images/engagement2.jpg';
 import '../styles/base.css';
-import RSVPModal from '../components/rsvpModal.jsx'
+import RSVPModal from '../components/rsvpModal.jsx';
+import EventCard from '../components/eventCard.astro';
 ---
 
 <Layout title="Trevor & Kristen">
@@ -23,11 +24,18 @@ import RSVPModal from '../components/rsvpModal.jsx'
       </div>
   </section>
   <main>
-    <div class="flex flex-col items-center gap-3 my-4">
-        <a class="" href='./timeline.html'><button class="text-white bg-wed_black rounded-md p-2 w-30">Relationship Timeline</button></a>
-        <RSVPModal client:load/>
-    </div>
-    <h1 class="p-5 text-[8vw] font-bold  text-white bg-wed_black text-center">#LetsGetEdeweird</h1>
+    <section id="">
+      <p class="text-center mt-4 w-2/3 m-auto text-2xl">We are ready for this enagement to be over! Please, help make our big day special and join our family and friends as we 
+        celebrate our commitment to each other.</p>
+      <div class="mt-4 w-2/3 m-auto">
+        <EventCard/>
+      </div>
+    </section>
+    <section id="engagementPhotos">
+      <div>
+        <h2>Engagement Photos</h2>
+      </div>
+    </section>
   </main>
   <footer class="md:static absolute bottom-0 left-0 right-0 m-auto w-full" >
     <p class="text-right">Copyright &copy; trevorandkristen.com</p>

@@ -1,6 +1,7 @@
 import hamburgerSVG from '../images/hamburgerSVG.svg';
 import {useState} from "react";
 import closeIcon from '../images/close_icon.jpg'
+import RSVPModal from './rsvpModal.tsx';
 
 
 export default function Hamburger(){
@@ -27,12 +28,13 @@ export default function Hamburger(){
               : "hidden"
           }
         >
-            <img onClick={handleClick} className="absolute top-1 right-1 z-50" src={closeIcon.src} height="50px" width="50px"></img>
+            <img onClick={handleClick} className="absolute top-1 right-1 z-40 bg-white" src={closeIcon.src} height="50px" width="50px"></img>
             <div className="mt-40 flex justify-center flex-col m-auto w-1/2 gap-5">
-                <button className="rounded-lg  bg-white">Home</button>
-                <button className="rounded-lg  bg-white">Relationship Timeline</button>
-                <button className="rounded-lg  bg-white">RSVP</button>
-                <button className="rounded-lg  bg-white">Venue</button>
+                <a href="/" className="rounded-lg  bg-white text-center py-1 font-bold">Home</a>
+                <a href="/timeline/" className="rounded-lg  bg-white text-center py-1 font-bold">Relationship Timeline</a>
+                <RSVPModal className="rounded-lg  bg-white text-center py-1 font-bold" client:load/>
+                <a href="/venue/" className="rounded-lg  bg-white text-center py-1 font-bold">Venue</a>
+                <a href="/faq/" className="rounded-lg  bg-white text-center py-1 font-bold">FAQ</a>
             </div>
         </div>
       </>
