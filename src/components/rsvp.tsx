@@ -65,13 +65,13 @@ export default function Rsvp({guests}) {
                                 <label htmlFor="rsvpSelect" className="whitespace-nowrap underline">{data.Name}</label>
                             </div>
                             <div className="h-10">
-                                <select name={data.Name} id="rsvpSelect" className="block w-full ring-1 rounded-md bg-wed_white">
+                                <select name={data.Name} id="rsvpSelect" className="block w-full ring-1 rounded-md bg-white">
                                     <option value="yes">Yes</option>
                                     <option value="no">No</option>
                                 </select>
                             </div>
                             <div className="h-10">
-                                <select name={data.Name} id="rsvpSelect" className="block w-full ring-1 rounded-md bg-wed_white">
+                                <select name={data.Name} id="rsvpSelect" className="block w-full ring-1 rounded-md bg-white">
                                     <option value="none">None</option>
                                     <option value="vegetarian">Vegetarian</option>
                                     <option value="vegan">Vegan</option>

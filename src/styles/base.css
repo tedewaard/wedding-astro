@@ -13,6 +13,13 @@
     p {
         @apply text-xl;
     }
+    a:link {
+        color: #0059ff;
+        text-decoration: underline;
+    }
+    a:visited {
+        color: #a5c300
+    }
 }
 
 @layer utilities {
