@@ -43,11 +43,11 @@ export default function rsvpComponent({className}) {
         <>
         <button id="rsvp" onClick={handleClick} className={className}>RSVP</button>
         <div id="vis" className={modal ? "flex justify-center fixed top-0 left-0 w-full h-full z-40 bg-black/40 " : "hidden" }>
-            <div className="relative border-black rounded-3xl border-4 bg-black z-20  mt-40 h-fit">
+            <div className="relative border-black rounded-3xl border-4 bg-white z-20  mt-40 h-fit">
                 <div id="close" onClick={handleClick} className="absolute top-2 right-2">
                     <img src={closeIcon.src} alt="X icon to close" width="20" height="20" />
                 </div>
-                <div className="w-1/2 mx-auto mb-8 text-wed_black">
+                <div className="w-1/2 mx-auto mb-8 text-black">
                     <h1 className="text-center underline text-2xl font-bold">RSVP</h1>
                     <p className="text-center font-bold">October 19, 2024</p>
                     <p className="text-center text-sm font-bold">4PM - 11PM</p>

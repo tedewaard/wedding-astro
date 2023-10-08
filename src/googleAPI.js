@@ -11,90 +11,25 @@ const SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
 // time.
 const TOKEN_PATH = path.join(process.cwd(), 'token.json');
 const CREDENTIALS_PATH = path.join(process.cwd(), 'credentials.json');
-
-const spreadsheetId = '1VoJRjviLA7ZTrTZyHPXoWZ7xuLmFId7faBpYl6GE7O4';
-
-/**
- * Reads previously authorized credentials from the save file.
- *
- * @return {Promise<OAuth2Client|null>}
- */
-async function loadSavedCredentialsIfExist() {
-  try {
-    const content = await fs.readFile(TOKEN_PATH);
-    const credentials = JSON.parse(content);
-    return google.auth.fromJSON(credentials);
-  } catch (err) {
-    return null;
-  }
-}
-
-/**
- * Serializes credentials to a file comptible with GoogleAUth.fromJSON.
- *
- * @param {OAuth2Client} client
- * @return {Promise<void>}
- */
-async function saveCredentials(client) {
-  const content = await fs.readFile(CREDENTIALS_PATH);
-  const keys = JSON.parse(content);
-  const key = keys.installed || keys.web;
-  const payload = JSON.stringify({
-    type: 'authorized_user',
-    client_id: key.client_id,
-    client_secret: key.client_secret,
-    refresh_token: client.credentials.refresh_token,
-  });
-  await fs.writeFile(TOKEN_PATH, payload);
-}
+const SERVICE_ACCOUNT_FILE = path.join(process.cwd(), 'authKey.json');
+const SPREADSHEETID = '1VoJRjviLA7ZTrTZyHPXoWZ7xuLmFId7faBpYl6GE7O4';
 
 /**
  * Load or request or authorization to call APIs.
  *
  */
 async function authorize() {
-  let client = await loadSavedCredentialsIfExist();
-  if (client) {
-    return client;
-  }
-  client = await authenticate({
+  const client = new google.auth.GoogleAuth({
     scopes: SCOPES,
-    keyfilePath: CREDENTIALS_PATH,
+    keyFile: SERVICE_ACCOUNT_FILE,
   });
-  if (client.credentials) {
-    await saveCredentials(client);
-  }
   return client;
 }
 
-/**
- * Prints the names and majors of students in a sample spreadsheet:
- * @see https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
- * @param {google.auth.OAuth2} auth The authenticated Google OAuth client.
- */
-async function listMajors(auth) {
+async function readWedding_range_test(auth) {
   const sheets = google.sheets({version: 'v4', auth});
   const res = await sheets.spreadsheets.values.get({
-    spreadsheetId: spreadsheetId,
-    range: 'Class Data!A2:E',
-  });
-  const rows = res.data.values;
-  if (!rows || rows.length === 0) {
-    console.log('No data found.');
-    return;
-  }
-  console.log('Name, Major:');
-  rows.forEach((row) => {
-    // Print columns A and E, which correspond to indices 0 and 4.
-    console.log(`${row[0]}, ${row[4]}`);
-  });
-}
-
-
-async function readWedding(auth) {
-  const sheets = google.sheets({version: 'v4', auth});
-  const res = await sheets.spreadsheets.values.get({
-    spreadsheetId: spreadsheetId,
+    spreadsheetId: SPREADSHEETID,
     range: 'A1:C5',
   });
   const rows = res.data.values;
@@ -112,7 +47,7 @@ async function readAllWedding(auth) {
   const entries = [];
   const sheets = google.sheets({version: 'v4', auth});
   const res = await sheets.spreadsheets.values.get({
-    spreadsheetId: spreadsheetId,
+    spreadsheetId: SPREADSHEETID,
     range: 'Sheet1',
   });
   const rows = res.data.values;
@@ -143,7 +78,7 @@ async function updateRow(auth, values, row) {
     values,
   };
   const res = await sheets.spreadsheets.values.update({
-    spreadsheetId: spreadsheetId,
+    spreadsheetId: SPREADSHEETID,
     range: row,
     valueInputOption: 'RAW',
     resource,
@@ -157,7 +92,7 @@ async function testUpdateRow(auth) {
     values,
   };
   const res = await sheets.spreadsheets.values.update({
-    spreadsheetId: spreadsheetId,
+    spreadsheetId: SPREADSHEETID,
     range: 'A139',
     valueInputOption: 'RAW',
     resource,
@@ -166,18 +101,18 @@ async function testUpdateRow(auth) {
 }
 
 async function findPerson(name) {
-  data = await authorize().then(readAllWedding).catch(console.error);
+  const data = await authorize().then(readAllWedding).catch(console.error);
   for (let i=0; i<data.length; i++) {
    if (data[i].Name == name) {
     //console.log(data[i]);
-    let family = findFamily(data[i].Family_ID);
+    let family = findFamily(data[i].Family_ID, data);
     console.log(family);
     return family;
    } 
   };
 }
 
-function findFamily(id) {
+function findFamily(id, data) {
   let family = [];
   for (let i=0; i<data.length; i++) {
    if (data[i].Family_ID == id) {
@@ -189,8 +124,9 @@ function findFamily(id) {
 }
 
 //data is an array of objects
-var data = await authorize().then(readAllWedding).catch(console.error);
+//var data = await authorize().then(readAllWedding).catch(console.error);
+//console.log(data);
 
-findPerson('Tanner Edewaard', data)
+//findPerson('Tanner Edewaard', data)
 
 export{findPerson};
