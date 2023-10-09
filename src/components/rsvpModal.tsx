@@ -7,20 +7,20 @@ export default function rsvpComponent({className}) {
     const [nameSubmitted, setNameSubmitted] = useState(false);
     const [responseMessage, setResponseMessage] = useState("");
     const [guests, setGuests] = useState([]);
-    console.log(guests);
+    //console.log(guests);
 
 
     async function submit(e: FormEvent<HTMLFormElement>) {
-        console.log(e);
+        //console.log(e);
         e.preventDefault();
         const formData = new FormData(e.target as HTMLFormElement);
-        console.log(formData);
+        //console.log(formData);
         const response = await fetch("/api/guest", {
             method: "POST",
             body: formData,
         });
         const data = await response.json();
-        console.log(data);
+        //console.log(data);
         if (data.message) {
             setResponseMessage(data.message);
             setGuests(data.data);

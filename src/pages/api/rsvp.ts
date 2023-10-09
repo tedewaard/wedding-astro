@@ -6,9 +6,11 @@ export const POST: APIRoute = async ({ request }) => {
     const guests = [];
     const rsvps = data.entries();
     for (let rsvp of rsvps) {
-        console.log(rsvp);
+        //console.log(rsvp);
         guests.push(rsvp);
     }
+    console.log("testing ---")
+    console.log(guests)
     //const song = data.get("song");
      // Validate the data - you'll probably want to do more than this
   if (!rsvps) {

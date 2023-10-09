@@ -58,8 +58,8 @@ async function readAllWedding(auth) {
   //console.log(rows.length)
   rows.forEach((row) => {
     //console.log(row);
-    entries.push({Name: row[0], Family_ID: row[1], RSVP_Sent: row[2], RSVP_Status: row[3], Updated: row[4],
-    Song: row[5], Food_Pref: row[6]});
+    entries.push({ID: row[0], Name: row[1], Family_ID: row[2], RSVP_Sent: row[3], RSVP_Status: row[4], Updated: row[5],
+    Song: row[6], Food_Pref: row[7]});
   });
   //console.log(entries);
   return entries
@@ -106,7 +106,7 @@ async function findPerson(name) {
    if (data[i].Name == name) {
     //console.log(data[i]);
     let family = findFamily(data[i].Family_ID, data);
-    console.log(family);
+    //console.log(family);
     return family;
    } 
   };
@@ -123,10 +123,30 @@ function findFamily(id, data) {
   return family;
 }
 
-//data is an array of objects
-//var data = await authorize().then(readAllWedding).catch(console.error);
-//console.log(data);
+function userToArray(userObj) {
+  const keys = Object.keys(userObj);
+  const values = keys.map(key => userObj[key]);
+}
 
+//TODO: Test this function . Create object on frontend and pass it in
+async function updateRSVP(userObj) {
+  const auth = authorize();
+  const sheets = google.sheets({version: 'v4', auth});
+  let range = "A" + userObj.ID;
+  let vals = userToArray(userObj);
+  let values = [vals];
+  let resource = {
+    values,
+  };
+  const res = await sheets.spreadsheets.values.update({
+    spreadsheetId: SPREADSHEETID,
+    range: range,
+    valueInputOption: 'RAW',
+    resource,
+  });
+};
+//var data = await authorize().then(readAllWedding).catch(console.error);
 //findPerson('Tanner Edewaard', data)
 
 export{findPerson};
+export{updateRSVP};

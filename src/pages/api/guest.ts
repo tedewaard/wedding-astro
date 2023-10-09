@@ -4,7 +4,6 @@ import { findPerson } from "../../googleAPI";
 export const POST: APIRoute = async ({ request }) => {
     const data = await request.formData();
     const name = data.get("name");
-    const song = data.get("song");
      // Validate the data - you'll probably want to do more than this
   if (!name) {
     return new Response(
@@ -16,6 +15,7 @@ export const POST: APIRoute = async ({ request }) => {
   }
   // Do something with the data, then return a success response
   let guests = await findPerson(name);
+  console.log(guests);
   return new Response(
     JSON.stringify({
       message: "Success!",

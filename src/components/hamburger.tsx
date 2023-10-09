@@ -34,6 +34,7 @@ export default function Hamburger(){
                 <a href="/timeline/" className="rounded-lg  bg-white text-center py-1 font-bold">Relationship Timeline</a>
                 <RSVPModal className="rounded-lg  bg-white text-center py-1 font-bold" client:load/>
                 <a href="/venue/" className="rounded-lg  bg-white text-center py-1 font-bold">Venue</a>
+                <a href="/venue/" className="rounded-lg  bg-white text-center py-1 font-bold">Registry</a>
                 <a href="/faq/" className="rounded-lg  bg-white text-center py-1 font-bold">FAQ</a>
             </div>
         </div>

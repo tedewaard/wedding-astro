@@ -25,11 +25,14 @@ export default function Rsvp({guests}) {
     useEffect(() => {
         let incomplete = [];
         let complete = [];
+        console.log(guests);
         for (let i=0; i<guests.length; i++){
-            if (guests[i].RSVP_Status == ""){
-                console.log(guests[i].Name);
+            console.log(Object.keys(guests[i]));
+            if (guests[i].RSVP_Status == "NA" | "No"){
+                console.log("Pushing to incomplete");
                 incomplete.push(guests[i]);
             } else {
+                console.log("Pushing to complete");
                 complete.push(guests[i]);
             }
         }
@@ -45,9 +48,11 @@ export default function Rsvp({guests}) {
                 <div className="mx-4 mb-5 text-lg font-bold">Thank you for your response!</div>
             :
             <div className="font-bold">
-                {rsvpComplete.map((guest, guestIdx) => {return(<div key={guestIdx} className="mb-4 mx-2 text-center">{guest.Name} has already RSVP'd</div>)})}
-                <div className="mb-2 w-3/4 text-center mx-auto">Would you like to RSVP for others in your party?</div>
-                <hr className="border-solid w-2/3 mx-auto border-1 mb-1 border-slate-700"></hr>
+                <div className={(rsvpComplete.length > 0) ? "font-bold" : "hidden"}>
+                    {rsvpComplete.map((guest, guestIdx) => {return(<div key={guestIdx} className="mb-4 mx-2 text-center">{guest.Name} has already RSVP'd</div>)})}
+                    <div className="mb-2 w-3/4 text-center mx-auto">Would you like to RSVP for others in your party?</div>
+                    <hr className="border-solid w-2/3 mx-auto border-1 mb-1 border-slate-700"></hr>
+                </div>
             <form id="rsvpForm" className={formSubmitted ? "hidden" : "flex"} onSubmit={submit}>
                 <div className="mx-2">
                     <div className="h-10"></div>
