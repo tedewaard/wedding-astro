@@ -1,5 +1,5 @@
 import { type FormEvent, useState } from "react";
-import closeIcon from '../images/close_icon.jpg'
+import closeIcon from '../images/close_icon_black.jpg'
 import Rsvp from './rsvp.jsx';
 
 export default function rsvpComponent({className}) {

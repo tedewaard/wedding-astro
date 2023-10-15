@@ -1,0 +1,45 @@
+---
+const {title} = Astro.props;
+const {date} = Astro.props;
+const {body} = Astro.props;
+const {side} = Astro.props;
+
+---
+<div class="w-11/12 m-auto justify-items-center grid grid-cols-11">
+
+
+    <div id="left" class={(side == "left") ? "hover:z-30 z-20 hover:w-11/12 hover:absolute md:hover:static col-span-5 group bg-white border-2 border-black rounded-3xl text-center align-middle px-10" : "col-span-5 invisible"}>
+        <h3 class="underline">{title}</h3>
+        <p class="font-bold md:whitespace-nowrap">{date}</p>
+        <div class="">
+            <p class="hidden group-hover:inline">{body}</p>
+        </div>
+    </div>
+
+
+    <div class="flex justify-center py-5 z-20">
+        <div class="rounded-full h-6 w-6 border-4 border-black bg-white"></div>
+    </div>
+
+
+    <div id="right" class={(side == "right") ? "hover:z-30 z-20 hover:w-11/12 hover:absolute md:hover:static col-span-5 group bg-white border-2 border-black rounded-3xl text-center align-middle px-10" : "col-span-5 invisible"}>
+        <h3 class="underline">{title}</h3>
+        <p class="font-bold md:whitespace-nowrap">{date}</p>
+        <div class="">
+            <p class="hidden group-hover:inline">{body}</p>
+        </div>
+    </div>
+
+
+</div>
+
+
+<!--
+<div class="group bg-white z-20 border-2 border-black rounded-3xl text-center align-middle px-10">
+    <h3 class="underline">{title}</h3>
+    <p class="font-bold md:whitespace-nowrap">{date}</p>
+    <div class="">
+        <p class="hidden group-hover:inline">{body}</p>
+    </div>
+</div>
+ -->

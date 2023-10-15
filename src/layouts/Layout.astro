@@ -1,7 +1,6 @@
 ---
 //import RSVP from '../components/rsvp.astro';
 import RSVPModal from '../components/rsvpModal.jsx';
-import hamburgerSVG from '../images/hamburgerSVG.svg';
 import Hamburger from '../components/hamburger.jsx';
 export interface Props {
 	title: string;
@@ -29,6 +28,7 @@ const { title } = Astro.props;
 				<a class="hidden md:inline" href='./index.html'><button class="text-white bg-black rounded-md p-2 w-50">Home</button></a>
 				<div class="">
 					<a class="mr-4" href='./timeline.html'><button class="text-white bg-black rounded-md p-2 w-30">Relationship Timeline</button></a>
+					<a class="mr-4" href='./timeline.html'><button class="hidden text-white bg-black rounded-md p-2 w-30">FAQ</button></a>
 					<RSVPModal className="text-white bg-black rounded-md p-2 w-20" client:load/>
 				</div>
 			</div>
