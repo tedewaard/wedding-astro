@@ -1,7 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import '../styles/base.css';
-import Card from '../components/timelineCard.astro'
+import Card from '../components/timelineCard.astro';
+import StPatty from '../../public/stpatty2.jpg';
+console.log(StPatty);
 ---
 
 
@@ -18,8 +20,8 @@ import Card from '../components/timelineCard.astro'
     </div>
 
     <div class="flex flex-col gap-12 ">
-        <Card title="First Date" date="December 11, 2019" side="right" body="It was Christmas time and we both found ourselves at Bloomingdale's trying to puchase the same pair of black cashmere gloves. We basically fell in love instantly, but Kristen decided to leave our entire potential relationship up to fate. She wrote her name and number in a book and I wrote mine on a 5 dollar bill. Would fate prove we were meant to be together?...OK, OK this is the plot of Serendipity. We met on Hinge, best dating app ever baby!!!"/>
-        <Card title="First Date" date="December 11, 2019" side="left" body="It was Christmas time and we both found ourselves at Bloomingdale's trying to puchase the same pair of black cashmere gloves. We basically fell in love instantly, but Kristen decided to leave our entire potential relationship up to fate. She wrote her name and number in a book and I wrote mine on a 5 dollar bill. Would fate prove we were meant to be together?...OK, OK this is the plot of Serendipity. We met on Hinge, best dating app ever baby!!!"/>
+        <Card title="First Date" date="December 11, 2019" side="right" pic={StPatty.src} body="It was Christmas time and we both found ourselves at Bloomingdale's trying to puchase the same pair of black cashmere gloves. We basically fell in love instantly, but Kristen decided to leave our entire potential relationship up to fate. She wrote her name and number in a book and I wrote mine on a 5 dollar bill. Would fate prove we were meant to be together?...OK, OK this is the plot of Serendipity. We met on Hinge, best dating app ever baby!!!"/>
+        <Card title="First Date" date="December 11, 2019" side="left" pic={StPatty.src} body="It was Christmas time and we both found ourselves at Bloomingdale's trying to puchase the same pair of black cashmere gloves. We basically fell in love instantly, but Kristen decided to leave our entire potential relationship up to fate. She wrote her name and number in a book and I wrote mine on a 5 dollar bill. Would fate prove we were meant to be together?...OK, OK this is the plot of Serendipity. We met on Hinge, best dating app ever baby!!!"/>
         <Card title="First Date" date="December 11, 2019" side="right" body="It was Christmas time and we both found ourselves at Bloomingdale's trying to puchase the same pair of black cashmere gloves. We basically fell in love instantly, but Kristen decided to leave our entire potential relationship up to fate. She wrote her name and number in a book and I wrote mine on a 5 dollar bill. Would fate prove we were meant to be together?...OK, OK this is the plot of Serendipity. We met on Hinge, best dating app ever baby!!!"/>
         <Card title="First Date" date="December 11, 2019" side="left" body="It was Christmas time and we both found ourselves at Bloomingdale's trying to puchase the same pair of black cashmere gloves. We basically fell in love instantly, but Kristen decided to leave our entire potential relationship up to fate. She wrote her name and number in a book and I wrote mine on a 5 dollar bill. Would fate prove we were meant to be together?...OK, OK this is the plot of Serendipity. We met on Hinge, best dating app ever baby!!!"/>
         <Card title="First Date" date="December 11, 2019" side="right" body="It was Christmas time and we both found ourselves at Bloomingdale's trying to puchase the same pair of black cashmere gloves. We basically fell in love instantly, but Kristen decided to leave our entire potential relationship up to fate. She wrote her name and number in a book and I wrote mine on a 5 dollar bill. Would fate prove we were meant to be together?...OK, OK this is the plot of Serendipity. We met on Hinge, best dating app ever baby!!!"/>
