@@ -1,5 +1,5 @@
 ---
-import RSVPModal from '../components/rsvpModal.jsx';
+//import RSVPModal from '../components/rsvpModal.jsx';
 import Hamburger from '../components/hamburger.jsx';
 export interface Props {
 	title: string;
@@ -24,9 +24,9 @@ const { title } = Astro.props;
 	<body id="body" class="bg-white">
 		<header class="z-40 absolute w-full">
 			<div class="hidden md:flex justify-between m-4">
-				<a class="hidden md:inline" href="/"><button class="text-white bg-black rounded-md p-2 w-50">Home</button></a>
+				<a class="hidden md:inline" href="/"><button class="text-white bg-black rounded-md p-2 w-50 md:text-2xl">Home</button></a>
 				<div class="">
-					<a class="mr-4" href="/timeline/"><button class="text-white bg-black rounded-md p-2 w-30">Relationship Timeline</button></a>
+					<a class="mr-4" href="/timeline/"><button class="text-white bg-black rounded-md p-2 w-30 md:text-2xl">Relationship Timeline</button></a>
 					<a class="mr-4" href="/timeline/"><button class="hidden text-white bg-black rounded-md p-2 w-30">FAQ</button></a>
 					<!--
 					<RSVPModal className="text-white bg-black rounded-md p-2 w-20" client:load/>
