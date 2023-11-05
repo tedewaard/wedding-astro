@@ -1,7 +1,10 @@
 ---
+//import FaqCard from "../components/faqCard.astro"
+import FaqCard from "../components/faqCard.tsx"
+import '../styles/base.css';
 
 ---
 
-
-
-<h1>FAQ</h1>
+<h1 class="text-center font-bold text-4xl m-5">FAQ</h1>
+<FaqCard client:load question="Are kids allowed to attend?" answer="As much as we enjoy having your kiddos around, Kristen and I are requesting that no kids be in attendance."/>
+<FaqCard client:load question="Where can we park?" answer="On the south side of the Venue is a public parking lot capped at $12 a night. There is also free street parking on Weekends if you find a spot close by or don't mind a little walk."/>
