@@ -12,12 +12,30 @@ const SPREADSHEETID = '1VoJRjviLA7ZTrTZyHPXoWZ7xuLmFId7faBpYl6GE7O4';
 
 //Lambda Handler
 export const handler = async (event) => {
-  const response = {
-    statusCode: 200,
-    body: JSON.stringify('Hello from Trevor.'),
-  };
-  return response;
+  const badResponse = {
+    statusCode: 400,
+    body: JSON.stringify('Bad Request'),
+  }
+
+
+    const query = event.queryStringParameters;
+    if (query) {
+
+      const family = await findPerson(query.name);
+      const body = JSON.stringify(family);
+
+      const response = {
+        statusCode: 200,
+        body: body,
+      };
+      return response;
+
+    } else {
+      return badResponse;
+    }
+
 }
+
 
 /**
  * Load or request or authorization to call APIs.
@@ -151,7 +169,7 @@ async function updateRSVP(userObj) {
   });
 };
 var data = await authorize().then(readAllWedding).catch(console.error);
-findPerson('Tanner Edewaard', data)
+await findPerson('Tanner Edewaard', data)
 
 //export{findPerson};
 //export{updateRSVP};
