@@ -28,7 +28,7 @@ export default function Rsvp({guests}) {
         console.log(guests);
         for (let i=0; i<guests.length; i++){
             console.log(Object.keys(guests[i]));
-            if (guests[i].RSVP_Status == "NA" | "No"){
+            if (guests[i].RSVP_Status === "NA" | "No"){
                 console.log("Pushing to incomplete");
                 incomplete.push(guests[i]);
             } else {

@@ -2,10 +2,11 @@ import { type FormEvent, useState } from "react";
 import closeIcon from '../images/close_icon_black.jpg'
 import Rsvp from './rsvp.jsx';
 
+const lambdaURL = "https://zd36se2dtkj5ydnrs7ostihmle0liyga.lambda-url.us-east-2.on.aws/?name="
+
 export default function rsvpComponent({className}) {
     const [modal, setModal] = useState(false);
     const [nameSubmitted, setNameSubmitted] = useState(false);
-    const [responseMessage, setResponseMessage] = useState("");
     const [guests, setGuests] = useState([]);
     //console.log(guests);
 
@@ -14,19 +15,18 @@ export default function rsvpComponent({className}) {
         //console.log(e);
         e.preventDefault();
         const formData = new FormData(e.target as HTMLFormElement);
-        //console.log(formData);
-        const response = await fetch("/api/guest", {
-            method: "POST",
-            body: formData,
-        });
-        const data = await response.json();
-        //console.log(data);
-        if (data.message) {
-            setResponseMessage(data.message);
-            setGuests(data.data);
+        const name = Object.fromEntries(formData).name;
+        console.log(name);
+
+        let url = lambdaURL + encodeURIComponent(name as string);
+        console.log(url)
+        const response = await fetch(url);
+        const data = await response.json()
+        console.log(data[0])
+        if (data) {
+            setGuests(data);
             setNameSubmitted(true);
         }
-
     }
 
     const handleClick = () => {
@@ -61,7 +61,7 @@ export default function rsvpComponent({className}) {
                             <input className="h-6 max-w-full border rounded-lg border-black mb-1 p-2 text-lg bg-white" type="text" id="name" name="name" required /><br />
                         </div>
                     </div>
-                        <button id="submit" className="justify-center mb-4 mx-auto w-1/3 text-center border-black border rounded-lg" type="submit" value="Submit">Submit</button>
+                        <button id="submit" className="justify-center mb-4 mx-auto w-fit px-1 text-center border-black border rounded-lg" type="submit" value="Submit">Submit</button>
                 </form>
                 {nameSubmitted && <Rsvp guests={guests} />}
             </div>
