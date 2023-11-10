@@ -19,21 +19,33 @@ export const handler = async (event) => {
 
 
     const query = event.queryStringParameters;
+    const body = event.body;
     if (query) {
 
       const family = await findPerson(query.name);
-      const body = JSON.stringify(family);
+      if (family){
+        const body = JSON.stringify(family);
+        const response = {
+          statusCode: 200,
+          body: body,
+        };
+        return response;
+      } else {
+        return badResponse
+      }
 
+
+    } else if (body) {
+      const data = JSON.parse(body);
+      
       const response = {
         statusCode: 200,
-        body: body,
+        body: data,
       };
       return response;
-
     } else {
       return badResponse;
     }
-
 }
 
 

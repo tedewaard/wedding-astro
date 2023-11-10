@@ -8,10 +8,6 @@ export default function({question, answer}){
     const [clicked, setClicked] = useState(false)
 
     const handleClick = () => {
-        console.log("testing")
-        if (clicked) {
-            
-        }
         setClicked(!clicked);
     }
 

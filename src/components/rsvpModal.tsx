@@ -4,10 +4,22 @@ import Rsvp from './rsvp.jsx';
 
 const lambdaURL = "https://zd36se2dtkj5ydnrs7ostihmle0liyga.lambda-url.us-east-2.on.aws/?name="
 
+type Guest = {
+    ID: string,
+    Name: string,
+    Family_ID: string,
+    RSVP_Sent: string,
+    RSVP_Status: string,
+    Updated: string,
+    Song: string,
+    Food_Pref: string,
+}
+
 export default function rsvpComponent({className}) {
     const [modal, setModal] = useState(false);
     const [nameSubmitted, setNameSubmitted] = useState(false);
-    const [guests, setGuests] = useState([]);
+    const [guests, setGuests] = useState<Guest[]>([]);
+    const [badRequest, setBadRequest] = useState(false);
     //console.log(guests);
 
 
@@ -21,9 +33,12 @@ export default function rsvpComponent({className}) {
         let url = lambdaURL + encodeURIComponent(name as string);
         console.log(url)
         const response = await fetch(url);
-        const data = await response.json()
-        console.log(data[0])
-        if (data) {
+        console.log(response.status);
+        if (response.status == 400) {
+            setBadRequest(true);
+            console.log(badRequest)
+        } else {
+            const data = await response.json()
             setGuests(data);
             setNameSubmitted(true);
         }
@@ -52,7 +67,7 @@ export default function rsvpComponent({className}) {
                     <p className="text-center font-bold">October 19, 2024</p>
                     <p className="text-center text-sm font-bold">4PM - 11PM</p>
                 </div>
-                <form className={nameSubmitted ? "hidden" : "flex flex-col justify-center w-1/2 mx-auto"} onSubmit={submit}>
+                <form className={nameSubmitted ? "hidden" : "flex flex-col justify-center mx-auto"} onSubmit={submit}>
                     <div className="flex justify-center mx-4">
                         <div className="mr-3">
                             <label className="font-bold text-lg" htmlFor="name">Name:</label><br />
@@ -61,7 +76,8 @@ export default function rsvpComponent({className}) {
                             <input className="h-6 max-w-full border rounded-lg border-black mb-1 p-2 text-lg bg-white" type="text" id="name" name="name" required /><br />
                         </div>
                     </div>
-                        <button id="submit" className="justify-center mb-4 mx-auto w-fit px-1 text-center border-black border rounded-lg" type="submit" value="Submit">Submit</button>
+                    <label className={badRequest ? "max-w-full text-sm text-red-600 text-center" : "hidden"}>Guest not found, please try again.</label>
+                    <button id="submit" className="justify-center mb-4 mx-auto w-fit px-1 text-center border-black border rounded-lg" type="submit" value="Submit">Submit</button>
                 </form>
                 {nameSubmitted && <Rsvp guests={guests} />}
             </div>
