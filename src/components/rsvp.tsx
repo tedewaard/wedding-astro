@@ -1,7 +1,16 @@
 import { type FormEvent, useState, useEffect } from "react";
 
 
-
+type Guest = {
+    ID: string,
+    Name: string,
+    Family_ID: string,
+    RSVP_Sent: string,
+    RSVP_Status: string,
+    Updated: string,
+    Song: string,
+    Food_Pref: string,
+}
 
 export default function Rsvp({guests}) {
     const [formSubmitted, setFormSubmitted] = useState(false);
@@ -11,28 +20,26 @@ export default function Rsvp({guests}) {
     async function submit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
         const formData = new FormData(e.target as HTMLFormElement);
-        const response = await fetch("/api/rsvp", {
-            method: "POST",
-            body: formData,
-        });
-        const data = await response.json();
-        console.log(data);
-        if (data.message) {
-        }
+        const parsedData = Object.fromEntries(formData.entries());
+        console.log(parsedData);
+        //console.log(e.target[0].value);
+        //console.log(e.target[1].value);
+
+
         setFormSubmitted(true);
     }
 
     useEffect(() => {
         let incomplete = [];
         let complete = [];
-        console.log(guests);
+        //console.log(guests);
         for (let i=0; i<guests.length; i++){
-            console.log(Object.keys(guests[i]));
+            //console.log(Object.keys(guests[i]));
             if (guests[i].RSVP_Status === "NA" | "No"){
-                console.log("Pushing to incomplete");
+                //console.log("Pushing to incomplete");
                 incomplete.push(guests[i]);
             } else {
-                console.log("Pushing to complete");
+                //console.log("Pushing to complete");
                 complete.push(guests[i]);
             }
         }
@@ -67,16 +74,16 @@ export default function Rsvp({guests}) {
                     return (
                         <div key={idx} className="mr-4 ">
                             <div className="h-10">
-                                <label htmlFor="rsvpSelect" className="whitespace-nowrap underline">{data.Name}</label>
+                                <label htmlFor={data.Name} className="whitespace-nowrap underline">{data.Name}</label>
                             </div>
                             <div className="h-10">
-                                <select name={data.Name} id="rsvpSelect" className="block w-full ring-1 rounded-md bg-white">
+                                <select name={"rsvp_status_" + idx} id={data.Name} className="block w-full ring-1 rounded-md bg-white">
                                     <option value="yes">Yes</option>
                                     <option value="no">No</option>
                                 </select>
                             </div>
                             <div className="h-10">
-                                <select name={data.Name} id="rsvpSelect" className="block w-full ring-1 rounded-md bg-white">
+                                <select name={"food_" + idx} id={data.Name} className="block w-full ring-1 rounded-md bg-white">
                                     <option value="none">None</option>
                                     <option value="vegetarian">Vegetarian</option>
                                     <option value="vegan">Vegan</option>
