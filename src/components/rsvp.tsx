@@ -12,20 +12,45 @@ type Guest = {
     Food_Pref: string,
 }
 
+
 export default function Rsvp({guests}) {
     const [formSubmitted, setFormSubmitted] = useState(false);
     const [rsvpIncomplete, setRsvpIncomplete] = useState([]);
     const [rsvpComplete, setRsvpComplete] = useState([]);
+    const [updatedRSVP, setUpdatedRSVP] = useState([]);
+
+    function parseData(data) {
+        let guestList = rsvpIncomplete;
+        const length = Object.keys(data).length;
+        console.log(Object.keys(data));
+        for (const key in data) {
+            let idx = key.charAt(key.length - 1);
+            let c = key.charAt(0);
+            if (c == "r") {
+                let guest: Guest = guestList[idx];
+                guest.RSVP_Status = data[key]
+                guest.Updated = "True"
+                guestList[idx] = guest;
+            }
+            
+            if (c == "f") {
+                let guest: Guest = guestList[idx];
+                guest.Food_Pref = data[key]
+                guestList[idx] = guest;
+            }
+        }
+        console.log(guestList)
+        setUpdatedRSVP(guestList);
+    }
 
     async function submit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
         const formData = new FormData(e.target as HTMLFormElement);
         const parsedData = Object.fromEntries(formData.entries());
-        console.log(parsedData);
-        //console.log(e.target[0].value);
-        //console.log(e.target[1].value);
 
-
+        parseData(parsedData)
+        //Take the updated RSVPs and send them to Lambda API
+        //Lambda will take the array of objects and make the necessary updates
         setFormSubmitted(true);
     }
 
@@ -78,15 +103,15 @@ export default function Rsvp({guests}) {
                             </div>
                             <div className="h-10">
                                 <select name={"rsvp_status_" + idx} id={data.Name} className="block w-full ring-1 rounded-md bg-white">
-                                    <option value="yes">Yes</option>
-                                    <option value="no">No</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
                                 </select>
                             </div>
                             <div className="h-10">
                                 <select name={"food_" + idx} id={data.Name} className="block w-full ring-1 rounded-md bg-white">
-                                    <option value="none">None</option>
-                                    <option value="vegetarian">Vegetarian</option>
-                                    <option value="vegan">Vegan</option>
+                                    <option value="None">None</option>
+                                    <option value="Vegetarian">Vegetarian</option>
+                                    <option value="Vegan">Vegan</option>
                                 </select>
                             </div>
                         </div>
