@@ -12,6 +12,9 @@ type Guest = {
     Food_Pref: string,
 }
 
+const lambdaURL = "https://zd36se2dtkj5ydnrs7ostihmle0liyga.lambda-url.us-east-2.on.aws/"
+
+//TODO: Fix logic around submitting a name in a party that someone has already submitted a response for
 
 export default function Rsvp({guests}) {
     const [formSubmitted, setFormSubmitted] = useState(false);
@@ -19,20 +22,22 @@ export default function Rsvp({guests}) {
     const [rsvpComplete, setRsvpComplete] = useState([]);
     const [updatedRSVP, setUpdatedRSVP] = useState([]);
 
-    function parseData(data) {
+    async function parseData(data) {
         let guestList = rsvpIncomplete;
         const length = Object.keys(data).length;
         console.log(Object.keys(data));
         for (const key in data) {
             let idx = key.charAt(key.length - 1);
             let c = key.charAt(0);
+            //Better way of doing this but works for now
+            //"r" stands for rsvp_status
             if (c == "r") {
                 let guest: Guest = guestList[idx];
                 guest.RSVP_Status = data[key]
                 guest.Updated = "True"
                 guestList[idx] = guest;
             }
-            
+            //"f" stands for food
             if (c == "f") {
                 let guest: Guest = guestList[idx];
                 guest.Food_Pref = data[key]
@@ -40,7 +45,18 @@ export default function Rsvp({guests}) {
             }
         }
         console.log(guestList)
+        console.log(JSON.stringify(guestList))
         setUpdatedRSVP(guestList);
+        let rsvp_update_post = await fetch(lambdaURL, {
+            method: 'POST',
+            headers: {
+                //'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(guestList)
+        });
+
+        console.log(await rsvp_update_post.json());
     }
 
     async function submit(e: FormEvent<HTMLFormElement>) {
@@ -126,35 +142,3 @@ export default function Rsvp({guests}) {
        </div> 
     )
 }
-/*
-    return(
-        <div className="">
-            <form id="rsvp" className="flex">
-                <div>
-                    <label className="text-sm mb-4 whitespace-nowrap block">Will you attend?</label>
-                    <label className="text-sm whitespace-nowrap block">Dietary Restrictions?</label>
-                </div>
-                {guests.map((data, idx) => {
-                    return(
-                        <div key={idx}>
-                            <label htmlFor="rsvpSelect" className="whitespace-nowrap">{data.Name}</label>
-                            <select name={data.Name} id="rsvpSelect" className="block w-full my-4">
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
-                            </select>
-                            <select name={data.Name} id="rsvpSelect" className="block w-full">
-                                <option value="none">None</option>
-                                <option value="vegetarian">Vegetarian</option>
-                                <option value="vegan">Vegan</option>
-                            </select>
-                        </div>
-                    )
-                })}
-            </form>
-                <div className="mt-4">
-                    <button id="submit" form="rsvp" className="block mb-4 mx-auto w-1/3 text-center border-black border rounded-lg" type="submit" value="Submit">Submit</button>
-                </div>
-       </div> 
-    )
-}
-*/
