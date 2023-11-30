@@ -15,6 +15,7 @@ type Guest = {
 const lambdaURL = "https://zd36se2dtkj5ydnrs7ostihmle0liyga.lambda-url.us-east-2.on.aws/"
 
 //TODO: Fix logic around submitting a name in a party that someone has already submitted a response for
+//TODO: If everyone in party has already RSVPd then state that
 
 export default function Rsvp({guests}) {
     const [formSubmitted, setFormSubmitted] = useState(false);
@@ -98,9 +99,10 @@ export default function Rsvp({guests}) {
             <div className="font-bold">
                 <div className={(rsvpComplete.length > 0) ? "font-bold" : "hidden"}>
                     {rsvpComplete.map((guest, guestIdx) => {return(<div key={guestIdx} className="mb-4 mx-2 text-center">{guest.Name} has already RSVP'd</div>)})}
-                    <div className="mb-2 w-3/4 text-center mx-auto">Would you like to RSVP for others in your party?</div>
+                    <div className={(rsvpIncomplete.length == 0) ? "hidden" : "mb-2 w-3/4 text-center mx-auto"}>Would you like to RSVP for others in your party?</div>
                     <hr className="border-solid w-2/3 mx-auto border-1 mb-1 border-slate-700"></hr>
                 </div>
+            <div className={(rsvpIncomplete.length == 0) ? "hidden" :""}>
             <form id="rsvpForm" className={formSubmitted ? "hidden" : "flex"} onSubmit={submit}>
                 <div className="mx-2">
                     <div className="h-10"></div>
@@ -136,6 +138,7 @@ export default function Rsvp({guests}) {
             </form>
                 <div className="mt-4">
                     <button id="submit" form="rsvpForm" className="block mb-4 mx-auto w-1/3 text-center border-black border rounded-lg" type="submit" value="Submit">Submit</button>
+                </div>
                 </div>
                 </div>
             }
