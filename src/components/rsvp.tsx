@@ -23,7 +23,7 @@ export default function Rsvp({guests}) {
     const [rsvpComplete, setRsvpComplete] = useState([]);
     const [updatedRSVP, setUpdatedRSVP] = useState([]);
 
-    async function parseData(data) {
+    async function parseData(data: any) {
         let guestList = rsvpIncomplete;
         const length = Object.keys(data).length;
         console.log(Object.keys(data));

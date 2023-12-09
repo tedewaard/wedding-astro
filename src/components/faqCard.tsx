@@ -19,7 +19,7 @@ export default function({question, answer}){
                 <img id="up" className={clicked ? "" : "hidden"} src={dropup.src} height="40px" width="40px"/>
             </div>
             <div id="child" className={clicked ? "p-2" : "hidden "}>
-                <p>{answer}</p>
+                <p className="whitespace-pre-line">{answer}</p>
             </div>
         </div>
     )
