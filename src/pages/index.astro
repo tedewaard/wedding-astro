@@ -5,6 +5,7 @@ import engaged2 from '../images/engagement2.jpg';
 import '../styles/base.css';
 import PhotoLibrary from '../components/photoLibrary.astro';
 import calendar from '../../public/calendar.svg?raw';
+import RSVPModal from '../components/rsvpModal'
 ---
 
 <Layout title="Trevor & Kristen">
@@ -14,7 +15,7 @@ import calendar from '../../public/calendar.svg?raw';
     -->
     <img class="z-0 w-full hidden md:inline" src={engaged1.src}  alt="Canded photo in front of sunset on rocks next to beach.">
     <img class="z-0 w-full inline md:hidden" src={engaged2.src}  alt="Enagement photo on the beach. A couple laughing.">
-      <div class="absolute z-20 text-2xl md:text-7xl font-bold text-center text-white w-1/3 md:left-20 right-10 top-10">
+      <div class="absolute z-20 text-2xl md:text-7xl font-bold text-center text-white w-1/3 md:left-20 right-10 top-14">
         <h1 class="font-vibes slideInLeft">Trevor</h1>
         <h1 class="font-vibes">&</h1>
         <h1 class="font-vibes slideInRight">Kristen</h1>
@@ -25,7 +26,10 @@ import calendar from '../../public/calendar.svg?raw';
   </section>
   <main>
     <section id="">
-      <p class="text-center mt-20 w-2/3 m-auto text-2xl">We are ready for this engagement to be over! Please, help make our big day special and join us as we 
+      <div class="flex justify-center m-8">
+        <RSVPModal className="text-white bg-black rounded-md p-2 w-40" client:load/>
+      </div>
+      <p class="text-center w-2/3 m-auto text-2xl">We are ready for this engagement to be over! Please, help make our big day special and join us as we 
         celebrate our commitment to each other.</p>
       <h3 class="text-center mt-10 text-3xl">Save the date!</h3>
       <div class="flex flex-col md:flex-row justify-center mt-4 items-center">
