@@ -19,28 +19,26 @@ export default function(){
                 <img id="up" className={clicked ? "" : "hidden"} src={dropup.src} height="40px" width="40px"/>
             </div>
             <div id="child" className={clicked ? "p-2" : "hidden "}>
-                <p className="whitespace-pre-line">The downtown area offers some great restraunts and breweries. Some of our favorites are:</p>
-                <p>Breakfast:</p>
-                <div className="flex justify-around">
-                    <div className="border-black border-2 p-2 rounded-md">Sundance Grill & Bar</div>
-                    <div className="border-black border-2 p-2 rounded-md">Tupelo Honey</div>
-                    <div className="border-black border-2 p-2 rounded-md">Social Misfits</div>
+                <p className="whitespace-pre-line mb-5">The downtown area offers some great restraunts. Some of our favorites are:</p>
+                <p>Breakfast</p>
+                <div className="text-center flex justify-around flex-col md:flex-row">
+                    <div className="border-black border-2 p-2 mb-2 rounded-md">Sundance Grill & Bar</div>
+                    <div className="border-black border-2 p-2 mb-2 rounded-md">Tupelo Honey</div>
+                    <div className="border-black border-2 p-2 mb-2 rounded-md">Social Misfits</div>
                 </div>
-                <p>Dinner/Breweries:</p>
-                <div className="flex justify-around">
-                    <div className="border-black border-2 p-2 rounded-md">New Holland Brewing</div>
-                    <div className="border-black border-2 p-2 rounded-md">Palio (Best Italian in GR)</div>
-                    <div className="border-black border-2 p-2 rounded-md">Founders Brewing</div>
-                    <div className="border-black border-2 p-2 rounded-md">Jolly Pumpkin</div>
-                    <div className="border-black border-2 p-2 rounded-md">Jolly Pumpkin</div>
+                <p>Dinner</p>
+                <div className="text-center flex flex-col md:flex-row justify-around">
+                    <div className="border-black border-2 p-2 mb-2 rounded-md">New Holland Brewing</div>
+                    <div className="border-black border-2 p-2 mb-2 rounded-md">Palio (Best Italian in GR)</div>
+                    <div className="border-black border-2 p-2 mb-2 rounded-md">Founders Brewing</div>
+                    <div className="border-black border-2 p-2 mb-2 rounded-md">Bangkok Taste Cuisine</div>
+                    <div className="border-black border-2 p-2 mb-2 rounded-md">Condado Tacos</div>
                 </div>
                 <p>Hang Over Food</p>
-                <div className="flex justify-around">
-                    <div className="border-black border-2 p-2 rounded-md">Garage Bar & Grill</div>
-                    <div className="border-black border-2 p-2 rounded-md">Condado Tacos</div>
-                    <div className="border-black border-2 p-2 rounded-md"></div>
-                    <div className="border-black border-2 p-2 rounded-md"></div>
-                    <div className="border-black border-2 p-2 rounded-md"></div>
+                <div className="text-center flex flex-col md:flex-row justify-around">
+                    <div className="border-black border-2 p-2 mb-2 rounded-md">Garage Bar & Grill</div>
+                    <div className="border-black border-2 p-2 mb-2 rounded-md">Condado Tacos</div>
+                    <div className="border-black border-2 p-2 mb-2 rounded-md">Stella's Lounge</div>
                 </div>
             </div>
         </div>
