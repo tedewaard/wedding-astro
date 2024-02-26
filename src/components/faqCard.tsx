@@ -3,8 +3,7 @@ import dropdown from "../images/chevron-down-svgrepo-com.svg"
 import dropup from "../images/chevron-up-svgrepo-com.svg"
 
 
-
-export default function({question, answer}){
+export default function({question, answer, image}){
     const [clicked, setClicked] = useState(false)
 
     const handleClick = () => {
@@ -20,6 +19,9 @@ export default function({question, answer}){
             </div>
             <div id="child" className={clicked ? "p-2" : "hidden "}>
                 <p className="whitespace-pre-line">{answer}</p>
+            </div>
+            <div className={clicked ? "flex items-center m-auto": "hidden"}>
+                <img src={image}/>
             </div>
         </div>
     )
