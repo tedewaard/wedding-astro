@@ -15,10 +15,9 @@
     }
     a:link {
         color: #0059ff;
-        text-decoration: underline;
     }
     a:visited {
-        color: #a5c300
+        color: purple
     }
 }
 
