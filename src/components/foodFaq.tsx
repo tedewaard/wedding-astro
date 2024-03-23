@@ -34,7 +34,7 @@ export default function(){
                     <a className=" p-2 mb-2 rounded-md bg-gray-200 text-black" href="https://maps.app.goo.gl/8vmFHNHQQmrt9xaj9" target="_blank">Bangkok Taste Cuisine</a>
                     <a className=" p-2 mb-2 rounded-md bg-gray-200 text-black" href="https://maps.app.goo.gl/HcZtctABpuBdGAFaA" target="_blank">Condado Tacos</a>
                 </div>
-                <p>Hang Over Food</p>
+                <p>Hangover Food</p>
                 <div className="text-center flex flex-col md:flex-row justify-around">
                     <a className=" p-2 mb-2 rounded-md bg-gray-200 text-black" href="https://maps.app.goo.gl/t3v9CF2GjeZxN9ig7" target="_blank">Garage Bar & Grill</a>
                     <a className=" p-2 mb-2 rounded-md bg-gray-200 text-black" href="https://maps.app.goo.gl/HcZtctABpuBdGAFaA" target="_blank">Condado Tacos</a>
