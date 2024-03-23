@@ -22,23 +22,23 @@ export default function(){
                 <p className="whitespace-pre-line mb-5">The downtown area offers some great restraunts. Some of our favorites are:</p>
                 <p>Breakfast</p>
                 <div className="text-center flex justify-around flex-col md:flex-row">
-                    <div className="border-black border-2 p-2 mb-2 rounded-md">Sundance Grill & Bar</div>
-                    <div className="border-black border-2 p-2 mb-2 rounded-md">Tupelo Honey</div>
-                    <div className="border-black border-2 p-2 mb-2 rounded-md">Social Misfits</div>
+                    <a className=" p-2 mb-2 rounded-md bg-gray-200 text-black" href="https://maps.app.goo.gl/kqftH3VYRr4g7uAP8" target="_blank">Sundance Grill & Bar</a>
+                    <a className=" p-2 mb-2 rounded-md bg-gray-200 text-black" href="https://maps.app.goo.gl/fXekW7k3GWyDHLz5A" target="_blank">Tupelo Honey</a>
+                    <a className=" p-2 mb-2 rounded-md bg-gray-200 text-black" href="https://maps.app.goo.gl/yqmptfnocq1QkSUq6" target="_blank">Social Misfits</a>
                 </div>
                 <p>Dinner</p>
                 <div className="text-center flex flex-col md:flex-row justify-around">
-                    <div className="border-black border-2 p-2 mb-2 rounded-md">New Holland Brewing</div>
-                    <div className="border-black border-2 p-2 mb-2 rounded-md">Palio (Best Italian in GR)</div>
-                    <div className="border-black border-2 p-2 mb-2 rounded-md">Founders Brewing</div>
-                    <div className="border-black border-2 p-2 mb-2 rounded-md">Bangkok Taste Cuisine</div>
-                    <div className="border-black border-2 p-2 mb-2 rounded-md">Condado Tacos</div>
+                    <a className=" p-2 mb-2 rounded-md bg-gray-200 text-black" href="https://maps.app.goo.gl/A5Xw3GLqz2wZF4Vm8" target="_blank">New Holland Brewing</a>
+                    <a className=" p-2 mb-2 rounded-md bg-gray-200 text-black" href="https://maps.app.goo.gl/QoYXeLRrSTxVBYHt8" target="_blank">Palio (Best Italian in GR)</a>
+                    <a className=" p-2 mb-2 rounded-md bg-gray-200 text-black" href="https://maps.app.goo.gl/JHXGNo6MPFTc71vH9" target="_blank">Founders Brewing</a>
+                    <a className=" p-2 mb-2 rounded-md bg-gray-200 text-black" href="https://maps.app.goo.gl/8vmFHNHQQmrt9xaj9" target="_blank">Bangkok Taste Cuisine</a>
+                    <a className=" p-2 mb-2 rounded-md bg-gray-200 text-black" href="https://maps.app.goo.gl/HcZtctABpuBdGAFaA" target="_blank">Condado Tacos</a>
                 </div>
                 <p>Hang Over Food</p>
                 <div className="text-center flex flex-col md:flex-row justify-around">
-                    <div className="border-black border-2 p-2 mb-2 rounded-md">Garage Bar & Grill</div>
-                    <div className="border-black border-2 p-2 mb-2 rounded-md">Condado Tacos</div>
-                    <div className="border-black border-2 p-2 mb-2 rounded-md">Stella's Lounge</div>
+                    <a className=" p-2 mb-2 rounded-md bg-gray-200 text-black" href="https://maps.app.goo.gl/t3v9CF2GjeZxN9ig7" target="_blank">Garage Bar & Grill</a>
+                    <a className=" p-2 mb-2 rounded-md bg-gray-200 text-black" href="https://maps.app.goo.gl/HcZtctABpuBdGAFaA" target="_blank">Condado Tacos</a>
+                    <a className=" p-2 mb-2 rounded-md bg-gray-200 text-black" href="https://maps.app.goo.gl/4ZPo3NVEuumCDbP87" target="_blank">Stella's Lounge</a>
                 </div>
             </div>
         </div>

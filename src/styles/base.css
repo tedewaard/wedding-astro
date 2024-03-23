@@ -13,12 +13,6 @@
     p {
         @apply text-xl;
     }
-    a:link {
-        color: #0059ff;
-    }
-    a:visited {
-        color: purple
-    }
 }
 
 @layer utilities {
