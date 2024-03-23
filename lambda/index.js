@@ -12,12 +12,44 @@ const SPREADSHEETID = '1VoJRjviLA7ZTrTZyHPXoWZ7xuLmFId7faBpYl6GE7O4';
 
 //Lambda Handler
 export const handler = async (event) => {
-  const response = {
-    statusCode: 200,
-    body: JSON.stringify('Hello from Trevor.'),
-  };
-  return response;
+  const badResponse = {
+    statusCode: 400,
+    body: JSON.stringify('Bad Request'),
+  }
+
+
+  const query = event.queryStringParameters;
+  const body = event.body;
+  if (query) {
+
+    const family = await findPerson(query.name);
+    if (family){
+      const body = JSON.stringify(family);
+      const response = {
+        statusCode: 200,
+        body: body,
+      };
+      return response;
+    } else {
+      return badResponse
+    }
+
+    //If we are sending data (RSVP) to the lambda 
+    } else if (body) {
+      //data will be an array of guest rsvp
+      const data = JSON.parse(body);
+      //Update the google sheet using our data
+      let updateRSVP = await parseRSVP(data);  
+      const response = {
+        statusCode: 200,
+        body: JSON.stringify(updateRSVP),
+      };
+      return response;
+    } else {
+      return badResponse;
+    }
 }
+
 
 /**
  * Load or request or authorization to call APIs.
@@ -70,24 +102,42 @@ async function readAllWedding(auth) {
   return entries
 }
 
-/**
- * 
- * @param {google.auth.OAuth2} auth 
- * @param {Array<Array<string>>} values 
- * @param {string} row 
- */
+
+async function parseRSVP(data) {
+  const client = await authorize()
+  for(let i=0; i<data.length; i++) {
+    let parsedData = []
+    //Grab values of object and add them to array
+    let vals = Object.values(data[i]);
+    let id = parseInt(vals[0]); //Converting Row ID to int
+    let fam = parseInt(vals[2]); //Converting family ID to int
+    vals[0] = id;
+    vals[2] = fam;
+    parsedData.push(vals);
+    //Call update row passing in what is needed
+    let range = "A" + vals[0]
+    let response = await updateRow(client, parsedData, range)
+    console.log(response.status);
+    if (response.status != 200) {
+      return "Error updating RSVP"
+    }
+  }
+  return "RSVPs Updated"
+}
+
 async function updateRow(auth, values, row) {
   const sheets = google.sheets({version: 'v4', auth});
   //let values = [['Tanner', 'Yes', 'Yup']];
   let resource = {
     values,
   };
-  const res = await sheets.spreadsheets.values.update({
+  const res = sheets.spreadsheets.values.update({
     spreadsheetId: SPREADSHEETID,
     range: row,
     valueInputOption: 'RAW',
     resource,
   });
+  return res;
 }
 
 async function testUpdateRow(auth) {
@@ -128,30 +178,35 @@ function findFamily(id, data) {
   return family;
 }
 
-function userToArray(userObj) {
-  const keys = Object.keys(userObj);
-  const values = keys.map(key => userObj[key]);
-}
-
-//TODO: Test this function . Create object on frontend and pass it in
-async function updateRSVP(userObj) {
-  const auth = authorize();
-  const sheets = google.sheets({version: 'v4', auth});
-  let range = "A" + userObj.ID;
-  let vals = userToArray(userObj);
-  let values = [vals];
-  let resource = {
-    values,
-  };
-  const res = await sheets.spreadsheets.values.update({
-    spreadsheetId: SPREADSHEETID,
-    range: range,
-    valueInputOption: 'RAW',
-    resource,
-  });
-};
-var data = await authorize().then(readAllWedding).catch(console.error);
-findPerson('Tanner Edewaard', data)
+//var data = await authorize().then(readAllWedding).catch(console.error);
+//await findPerson('Tanner Edewaard', data)
 
 //export{findPerson};
 //export{updateRSVP};
+
+/*
+const exampleBody = [
+  {
+    ID: "137",
+    Name: "Liza Lohman",
+    Family_ID: "78",
+    RSVP_Sent: "Yes",
+    RSVP_Status: "Yes",
+    Updated: "True",
+    Song: "NA",
+    Food_Pref: "Vege",
+  },
+  {
+    ID: "138",
+    Name: "Liam Terry",
+    Family_ID: "79",
+    RSVP_Sent: "Yes",
+    RSVP_Status: "Yes",
+    Updated: "True",
+    Song: "NA",
+    Food_Pref: "Veganasdf",
+  },
+]; 
+
+let testParse = await parseRSVP(exampleBody);
+*/

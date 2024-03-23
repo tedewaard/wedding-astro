@@ -5,6 +5,8 @@ import engaged2 from '../images/engagement2.jpg';
 import '../styles/base.css';
 import PhotoLibrary from '../components/photoLibrary.astro';
 import calendar from '../../public/calendar.svg?raw';
+import RSVPModal from '../components/rsvpModal'
+import Diamond from '../../public/diamond-svgrepo-com.svg?raw'
 ---
 
 <Layout title="Trevor & Kristen">
@@ -14,7 +16,7 @@ import calendar from '../../public/calendar.svg?raw';
     -->
     <img class="z-0 w-full hidden md:inline" src={engaged1.src}  alt="Canded photo in front of sunset on rocks next to beach.">
     <img class="z-0 w-full inline md:hidden" src={engaged2.src}  alt="Enagement photo on the beach. A couple laughing.">
-      <div class="absolute z-20 text-2xl md:text-7xl font-bold text-center text-white w-1/3 md:left-20 right-10 top-10">
+      <div class="absolute z-20 text-2xl md:text-7xl font-bold text-center text-white w-1/3 md:left-20 right-10 top-14">
         <h1 class="font-vibes slideInLeft">Trevor</h1>
         <h1 class="font-vibes">&</h1>
         <h1 class="font-vibes slideInRight">Kristen</h1>
@@ -25,16 +27,42 @@ import calendar from '../../public/calendar.svg?raw';
   </section>
   <main>
     <section id="">
-      <p class="text-center mt-20 w-2/3 m-auto text-2xl">We are ready for this engagement to be over! Please, help make our big day special and join us as we 
+      <div class="flex justify-center m-8">
+        <RSVPModal className="text-white bg-black rounded-md p-2 w-40" client:load/>
+      </div>
+      <p class="text-center w-2/3 m-auto text-2xl">We are ready for this engagement to be over! Please, help make our big day special and join us as we 
         celebrate our commitment to each other.</p>
-      <h3 class="text-center mt-10 text-3xl">Save the date!</h3>
-      <div class="flex flex-col md:flex-row justify-center mt-4 items-center">
-        <a class="w-16" href="/wedding.ics" download="trevorkristenwedding.ics">
-          <div class="border-black border-2 rounded-lg p-2 flex justify-center">
-            <Fragment set:html={calendar} />
+      <div class="flex md:flex-row flex-col mt-10 m-auto w-11/12 items-center">
+        <div class="relative basis-full">
+          <div class=" rounded-full border-black border-8 h-80 w-80 flex items-center m-auto">
+            <div class="w-[70px] h-[70px] absolute -rotate-[40deg] -top-[20px]">
+              <Fragment class="" set:html={Diamond}/>
+            </div>
+            <div class="h-[160px] m-auto">
+              <h3 class="text-center text-3xl">Save the date!</h3>
+              <div class="flex flex-col justify-center mt-3 items-center">
+                <a class="w-16" href="/public/wedding.ics" download="trevorkristenwedding.ics">
+                  <div class="border-black border-2 rounded-lg p-2 flex justify-center">
+                    <Fragment set:html={calendar} />
+                  </div>
+                </a>
+                <p class="text-xl font-bold text-center pt-2">Saturday, October 19, 2024</p>
+              </div>
+            </div>
           </div>
-        </a>
-        <p class="text-2xl text-center pt-2 pl-2">Saturday, October 19, 2024</p>
+        </div>
+        <div class="h-[160px] md:m-auto basis-full mt-10">
+          <h3 class="text-center text-3xl">Book your hotel!</h3>
+          <p class="mb-2">We currently have blocks at two hotels downtown Grand Rapids:</p>
+          <div class="grid grid-cols-2 mb-2">
+            <h3 class=""> Courtyard by Marriott</h3>
+            <a class="h-8 w-fit border-2 border-black bg-black visited:text-white rounded-lg no-underline p-1" href="https://book.passkey.com/e/50789421">Book Here</a>
+          </div>
+          <div class="grid grid-cols-2">
+            <h3 class="">Canopy by Hilton</h3>
+            <a class="h-8 w-fit border-2 border-black bg-black visited:text-white rounded-lg no-underline p-1" href="https://www.hilton.com/en/book/reservation/deeplink/?ctyhocn=GRRGRPY&groupCode=PEWD&arrivaldate=2024-10-18&departuredate=2024-10-20&cid=OM,WW,HILTONLINK,EN,DirectLink&fromId=HILTONLINKDIRECT">Book Here</a>
+          </div>
+        </div>
       </div>
       <h3 class="text-center mt-10 mb-6 text-3xl">Our Venue</h3>
       <p class="text-2xl font-bold text-center mb-6"><a class="underline text-blue-600 hover:text-blue-800 visited:text-purple-600" href="https://thehighfivegr.com">The High Five GR</a></p>
