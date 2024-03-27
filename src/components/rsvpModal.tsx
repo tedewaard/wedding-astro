@@ -18,6 +18,7 @@ type Guest = {
 export default function rsvpComponent({className}) {
     const [modal, setModal] = useState(false);
     const [nameSubmitted, setNameSubmitted] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [guests, setGuests] = useState<Guest[]>([]);
     const [badRequest, setBadRequest] = useState(false);
     //console.log(guests);
@@ -26,6 +27,7 @@ export default function rsvpComponent({className}) {
     async function submit(e: FormEvent<HTMLFormElement>) {
         //console.log(e);
         e.preventDefault();
+        setLoading(true);
         const formData = new FormData(e.target as HTMLFormElement);
         const name = Object.fromEntries(formData).name;
         console.log(name);
@@ -35,9 +37,11 @@ export default function rsvpComponent({className}) {
         const response = await fetch(url);
         console.log(response.status);
         if (response.status == 400) {
+            setLoading(false);
             setBadRequest(true);
             console.log(badRequest)
         } else {
+            setLoading(false);
             const data = await response.json()
             setGuests(data);
             setNameSubmitted(true);
@@ -77,6 +81,7 @@ export default function rsvpComponent({className}) {
                         </div>
                     </div>
                     <label className={badRequest ? "max-w-full text-sm text-red-600 text-center" : "hidden"}>Guest not found, please try again.</label>
+                    <label className={loading ? "max-w-full text-sm text-black text-center" : "hidden"}>Searching...</label>
                     <button id="submit" className="justify-center mb-4 mx-auto w-fit px-1 text-center border-black border rounded-lg" type="submit" value="Submit">Submit</button>
                 </form>
                 {nameSubmitted && <Rsvp guests={guests} />}
