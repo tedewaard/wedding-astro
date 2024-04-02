@@ -103,30 +103,34 @@ export default function Rsvp({guests}) {
                     <hr className="border-solid w-2/3 mx-auto border-1 mb-1 border-slate-700"></hr>
                 </div>
             <div className={(rsvpIncomplete.length == 0) ? "hidden" :""}>
-            <form id="rsvpForm" className={formSubmitted ? "hidden" : "flex"} onSubmit={submit}>
-                <div className="mx-2">
+            <form id="rsvpForm" className={formSubmitted ? "hidden" : "flex flex-col md:flex-row m-auto w-4/5 md:w-auto"} onSubmit={submit}>
+                <div className="mx-2 hidden md:block">
                     <div className="h-10"></div>
                     <div className="h-10">
-                        <label className="text-sm whitespace-nowrap block">Attending?</label>
+                        <label className="text-sm whitespace-nowrap block pt-1">Attending?</label>
                     </div>
                     <div className="h-10">
-                        <label className="text-sm whitespace-nowrap block">Dietary Restrictions?</label>
+                        <label className="text-sm whitespace-nowrap block pt-1">Dietary Restrictions?</label>
                     </div>
                 </div>
+
+
                 {rsvpIncomplete.map((data, idx) => {
                     return (
-                        <div key={idx} className="mr-4 ">
-                            <div className="h-10">
+                        <div key={idx} className="md:mr-4 m-auto w-full mb-5">
+                            <div className="h-10 text-center">
                                 <label htmlFor={data.Name} className="whitespace-nowrap underline">{data.Name}</label>
                             </div>
-                            <div className="h-10">
-                                <select name={"rsvp_status_" + idx} id={data.Name} className="block w-full ring-1 rounded-md bg-white">
+                            <div className="h-10 w-1/2 md:w-full mx-auto mb-2 md:mb-0">
+                                <label className="text-sm whitespace-nowrap block md:hidden">Attending?</label>
+                                <select name={"rsvp_status_" + idx} id={data.Name} className="block md:w-full rounded-md bg-white border-2">
                                     <option value="Yes">Yes</option>
                                     <option value="No">No</option>
                                 </select>
                             </div>
-                            <div className="h-10">
-                                <select name={"food_" + idx} id={data.Name} className="block w-full ring-1 rounded-md bg-white">
+                            <div className="h-10 w-1/2 md:w-full m-auto">
+                                <label className="text-sm whitespace-nowrap block md:hidden">Dietary Restrictions?</label>
+                                <select name={"food_" + idx} id={data.Name} className="block md:w-full  rounded-md bg-white border-2">
                                     <option value="None">None</option>
                                     <option value="Vegetarian">Vegetarian</option>
                                     <option value="Vegan">Vegan</option>
@@ -135,6 +139,7 @@ export default function Rsvp({guests}) {
                         </div>
                     )
                 })}
+
             </form>
                 <div className="mt-4">
                     <button id="submit" form="rsvpForm" className="block mb-4 mx-auto w-1/3 text-center border-black border rounded-lg" type="submit" value="Submit">Submit</button>
