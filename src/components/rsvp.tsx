@@ -107,10 +107,10 @@ export default function Rsvp({guests}) {
                 <div className="mx-2 hidden md:block">
                     <div className="h-10"></div>
                     <div className="h-10">
-                        <label className="text-sm whitespace-nowrap block">Attending?</label>
+                        <label className="text-sm whitespace-nowrap block pt-1">Attending?</label>
                     </div>
                     <div className="h-10">
-                        <label className="text-sm whitespace-nowrap block">Dietary Restrictions?</label>
+                        <label className="text-sm whitespace-nowrap block pt-1">Dietary Restrictions?</label>
                     </div>
                 </div>
 
@@ -121,16 +121,16 @@ export default function Rsvp({guests}) {
                             <div className="h-10 text-center">
                                 <label htmlFor={data.Name} className="whitespace-nowrap underline">{data.Name}</label>
                             </div>
-                            <div className="h-10 w-1/2 md:w-full m-auto">
+                            <div className="h-10 w-1/2 md:w-full mx-auto mb-2 md:mb-0">
                                 <label className="text-sm whitespace-nowrap block md:hidden">Attending?</label>
-                                <select name={"rsvp_status_" + idx} id={data.Name} className="block md:w-full ring-1 rounded-md bg-white">
+                                <select name={"rsvp_status_" + idx} id={data.Name} className="block md:w-full rounded-md bg-white border-2">
                                     <option value="Yes">Yes</option>
                                     <option value="No">No</option>
                                 </select>
                             </div>
                             <div className="h-10 w-1/2 md:w-full m-auto">
                                 <label className="text-sm whitespace-nowrap block md:hidden">Dietary Restrictions?</label>
-                                <select name={"food_" + idx} id={data.Name} className="block md:w-full ring-1 rounded-md bg-white">
+                                <select name={"food_" + idx} id={data.Name} className="block md:w-full  rounded-md bg-white border-2">
                                     <option value="None">None</option>
                                     <option value="Vegetarian">Vegetarian</option>
                                     <option value="Vegan">Vegan</option>

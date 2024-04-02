@@ -31,11 +31,11 @@ export default function Hamburger(){
         >
             <img onClick={handleClick} className="absolute top-1 right-1 z-40" src={cross.src} height="50px" width="50px"></img>
             <div className="mt-40 flex justify-center flex-col m-auto w-1/2 gap-5">
-                <a href="/" className="rounded-lg  bg-white text-center py-1 font-bold underline text-blue-600 hover:text-blue-800 visited:text-purple-600">HOME</a>
-                {/*<RSVPModal className="rounded-lg  bg-white text-center py-1 font-bold underline text-blue-600 hover:text-blue-800 visited:text-purple-600" />*/}
-                <a href="/venue/" className="hidden rounded-lg  bg-white text-center py-1 font-bold underline text-blue-600 hover:text-blue-800 visited:text-purple-600">Venue</a>
-                <a href="/registry/" className="rounded-lg  bg-white text-center py-1 font-bold underline text-blue-600 hover:text-blue-800 visited:text-purple-600">Registry</a>
-                <a href="/faq/" className=" rounded-lg  bg-white text-center py-1 font-bold underline text-blue-600 hover:text-blue-800 visited:text-purple-600">FAQ</a>
+                <a href="/" className="rounded-lg  bg-white text-center py-1 font-bold ">HOME</a>
+                <RSVPModal className="rounded-lg  bg-white text-center py-1 font-bold " />
+                <a href="/venue/" className="hidden rounded-lg  bg-white text-center py-1 font-bold te">Venue</a>
+                <a href="/registry/" className="rounded-lg  bg-white text-center py-1 font-bold ">Registry</a>
+                <a href="/faq/" className=" rounded-lg  bg-white text-center py-1 font-bold ">FAQ</a>
             </div>
         </div>
       </>
