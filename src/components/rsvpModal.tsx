@@ -69,7 +69,7 @@ export default function rsvpComponent({className}) {
                 <div className="w-1/2 mx-auto mb-8 text-black">
                     <h1 className="text-center underline text-2xl font-bold">RSVP</h1>
                     <p className="text-center font-bold">October 19, 2024</p>
-                    <p className="text-center text-sm font-bold">4PM - 11PM</p>
+                    <p className="text-center text-sm font-bold">4:30PM - 11PM</p>
                 </div>
                 <form className={nameSubmitted ? "hidden" : "flex flex-col justify-center mx-auto"} onSubmit={submit}>
                     <div className="flex justify-center mx-4">
